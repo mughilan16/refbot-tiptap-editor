@@ -47,9 +47,14 @@ export const RefbotMark = ({ name, tag, color }: { name: string, tag: string, co
                 default: color,
                 // parseHTML: element => element.getAttribute('data-color') || element.style.backgroundColor,
                 renderHTML: attributes => {
+                    const attrs: Record<string, any> = {};
+                    if (name == 'author') {
+                        attrs.key = Math.ceil(Math.random() * 100);
+                    }
                     return {
                         style: `background-color: ${color}; color: inherit`,
                         tag: 'ref-bot',
+                        ...attrs,
                     }
                 },
             },
@@ -60,6 +65,9 @@ export const RefbotMark = ({ name, tag, color }: { name: string, tag: string, co
         return [
             {
                 tag,
+            },
+            {
+                tag: `r-${tag}`,
             },
         ]
     },

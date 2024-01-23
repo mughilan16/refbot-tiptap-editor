@@ -1,40 +1,22 @@
-import { Box, Button, Divider, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import {
-  MenuButtonAddTable,
-  MenuButtonBlockquote,
   MenuButtonBold,
-  MenuButtonBulletedList,
-  MenuButtonCode,
-  MenuButtonCodeBlock,
-  MenuButtonEditLink,
   MenuButtonHighlightColor,
-  MenuButtonHorizontalRule,
-  MenuButtonImageUpload,
-  MenuButtonIndent,
   MenuButtonItalic,
-  MenuButtonOrderedList,
   MenuButtonRedo,
   MenuButtonRemoveFormatting,
   MenuButtonStrikethrough,
   MenuButtonSubscript,
   MenuButtonSuperscript,
-  MenuButtonTaskList,
   MenuButtonTextColor,
   MenuButtonUnderline,
   MenuButtonUndo,
-  MenuButtonUnindent,
   MenuControlsContainer,
-  MenuDivider,
-  MenuSelectFontFamily,
-  MenuSelectFontSize,
-  MenuSelectHeading,
-  MenuSelectTextAlign,
-  isTouchDevice,
+  MenuDivider
 } from "mui-tiptap";
-import useReferenceElements from "../../hooks/useReferenceElements";
-import RefbotButtons from "./Extensions/RefbotButtons/RefbotButtons";
-import { grey } from "@mui/material/colors";
-import RefbotButtonOption from "./Extensions/RefbotButtons/RefbotButtonOption";
+import RefbotButtons from "../../Editor/Extensions/RefbotButtons/RefbotButtons";
+import { ExtendRangeButton } from "../../Editor/Extensions/RefbotButtons/ExtendRangeButton";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -44,7 +26,7 @@ export default function EditorMenuControls() {
 
   return (
     <MenuControlsContainer>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '4px', borderBottom: `2px solid ${grey[300]} !important`, backgroundColor: grey[200], padding: '5px', borderRadius: '5px' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '4px', border: `2px solid ${grey[300]} !important`, padding: '5px', borderRadius: '5px' }}>
         {/* <RefbotButtonOption /> */}
         <RefbotButtons />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -98,6 +80,10 @@ export default function EditorMenuControls() {
 
           <MenuButtonUndo />
           <MenuButtonRedo />
+          <MenuDivider />
+
+          {/* <ExtendRangeButton /> */}
+
         </Box>
       </Box>
     </MenuControlsContainer>

@@ -13,8 +13,8 @@ export const HoverEventPlugin = Extension.create({
             const parentElement = el.parentElement;
             if (parentElement != null) {
                 tags.unshift(parentElement.tagName)
-                traverseRefbotTags(parentElement, tags);
-                if (parentElement.tagName != 'P') {
+                if (!['P', "DIV"].includes(parentElement.tagName)) {
+                    traverseRefbotTags(parentElement, tags);
                 }
             }
 
@@ -28,17 +28,12 @@ export const HoverEventPlugin = Extension.create({
                         mouseover(view, event) {
                             if (!event.target) return;
                             const el = event.target as HTMLElement;
-                            // const state = HoverEventPluginKey.getState();
-                            // console.log(this.getState());
                             let tags: string[] = [];
-                            // if (el.tagName.startsWith('r-') || oldTag == el.tagName) return;
                             tags.unshift(el.tagName);
                             traverseRefbotTags(el, tags);
                             useMainTab.setState(state => {
-                                // const newState = { ...state };
                                 state.editor.hoverElements = tags;
-                                // return {...state, e}
-                                // return { ...newState };
+                                // .map(i => i.replace('R-', ''));
                             });
                             oldTag = el.tagName;
                         },

@@ -8,41 +8,28 @@ const CustomButton = styled(Button)({
     padding: `2px 4px`,
 });
 
+const refTags = referenceElements.map(refEl => refEl.name).filter(i => !['author'].includes(i));
+
 const RefbotButtons = () => {
-    // return commands.setMark(this.name, attributes)
-    const { data } = useReferenceElements();
+    // const { data } = useReferenceElements();
     const editor = useRichTextEditorContext();
-    // const editor = useRichTextEditorContext();
-
-    const selectionHandler = ({ tag }: { tag: string }) => {
-        if (editor) {
-            editor.state.selection;
-        }
-    }
-    const insertionHandler = ({ tag }: { tag: string }) => {
-        if (editor) {
-            editor.state.selection;
-        }
-    }
-
-    
 
 
     const onClickHandler = (markName: string) => {
         if (!editor) return;
 
         const state = editor.state;
-        const { from, to, empty } = state.selection;
-        const tr = editor.state.tr;
-        if (!empty) {
-            const marks = state.doc.resolve(from).marks();
-            marks.map(mark => {
-                console.log(mark.type);
-                tr.removeMark(from, to, mark.type);
+        const { from, to, empty, $from } = state.selection;
+        editor.state.doc.nodesBetween(from, to, (node) => {
+            const tr = editor.state.tr;
+            node.marks.forEach(mark => {
+                if (refTags.includes(mark.type.name)) {
+                    tr.removeMark(from, to, mark.type);
+                }
             })
-            tr.addMark(from, to, editor.schema.marks[markName].create())
+            tr.addMark(from, to, editor.schema.marks[markName].create());
             editor.view.dispatch(tr);
-        }
+        })
     }
 
     return (

@@ -16,14 +16,16 @@ import { useCallback, useMemo, useState } from "react";
 import Navbar from "./Components/Layout/Navbar";
 import MuiThemeProvider from "./Components/Providers/MuiThemeProvider/MuiThemeProvider";
 import RefBotPage from "./Components/RefBotPage/View";
+import MuiSnakbarProvider from "./Components/Providers/MuiSnakbarProvider";
 
 export default function App() {
 
   return (
     <MuiThemeProvider>
       <CssBaseline />
-      <RefBotPage />
-
+      <MuiSnakbarProvider>
+        <RefBotPage />
+      </MuiSnakbarProvider>
     </MuiThemeProvider>
   );
 }

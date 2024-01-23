@@ -17,7 +17,7 @@ export const CustomParagraph = Paragraph.extend({
     addAttributes() {
         return {
             type: {
-                default: 'Unknow',
+                default: 'Journal',
                 parseHTML: (node) => {
                     return node.getAttribute('type');
                 },
