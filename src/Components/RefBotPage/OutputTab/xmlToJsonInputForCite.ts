@@ -38,9 +38,19 @@ const elementToJson = ({ el, template, type }: { el: HTMLElement, type: string, 
 
     const issued = el.querySelector(`q-issued`);
     if (issued) {
-        let year = issued.querySelector(`[data-name="year"]`)?.innerText.match(/[0-9]{4}/g)[0];
-        let day = issued.querySelector(`[data-name="date-in-citation"]`)?.innerText.match(/[0-9]/g)[0];
-        let month = issued.querySelector(`[data-name="date-in-citation"]`)?.innerText.match(/[0-9]/g)[0];
+        let yearEl = issued.querySelector(`[data-name="year"]`) as HTMLElement;
+        let dayEl = issued.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
+        let monthEl = issued.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
+        let day, month, year;
+        if (yearEl != null) {
+            year = yearEl?.innerText.match(/[0-9]{4}/g)[0];
+        }
+        if (dayEl != null) {
+            day = dayEl?.innerText.match(/[0-9]/g)[0];
+        }
+        if (monthEl != null) {
+            month = monthEl?.innerText.match(/[0-9]/g)[0];
+        }
         res['issued'] = {
             'date-parts': [{
                 year,
