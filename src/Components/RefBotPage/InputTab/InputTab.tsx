@@ -1,12 +1,13 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Autocomplete, Box, Paper, Stack, TextField, styled } from '@mui/material';
+import { Box, Paper, TextField, styled } from '@mui/material';
+import { useRichTextEditorContext } from "mui-tiptap";
+import { useSnackbar } from "notistack";
 import { Controller, useFormContext } from 'react-hook-form';
 import { useMainTab } from '../../../hooks/zustand/useMainTab';
 import axiosLaravel from '../../../utils/axiosLaravel';
+import LoadingDialog from "../LoadingDialog";
 import { FormFields } from '../View';
-import { cslTemplated } from '../cslTemplates';
-import { useRichTextEditorContext } from "mui-tiptap";
-import { useSnackbar } from "notistack";
+import serverXmlResponseSanitize from "../OutputTab/serverXmlResponseSanitize";
 
 
 const CustomePaper = styled(Paper)({
@@ -46,7 +47,7 @@ const InputTab = () => {
           tab: 'Changes',
         }
       })
-      editor?.commands.setContent(data.join('').replaceAll('source', 'r-source'));
+      editor?.commands.setContent(serverXmlResponseSanitize(data.join('')));
     }).catch(error => {
       enqueueSnackbar({
         message: 'Error',

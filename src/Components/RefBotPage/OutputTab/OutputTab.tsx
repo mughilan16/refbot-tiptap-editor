@@ -7,6 +7,8 @@ import { useRichTextEditorContext } from 'mui-tiptap'
 import xmlToJsonInputForCite from './xmlToJsonInputForCite'
 import YourComponent from './Citation'
 import { useMemo } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { FormFields } from '../View'
 
 const CustomList = styled(List)({
   '&:hover': {
@@ -25,12 +27,15 @@ const OutputTab = () => {
   const currentTab = useMainTab(state => state.currentTab);
   const editor = useRichTextEditorContext();
 
-  const outs: string[] = useMemo(() => {
-    return xmlToJsonInputForCite({ xml: editor?.getHTML() || '' })
-  }, [currentTab == 'Output'])
+  const template = useFormContext<FormFields>().watch('style');
+
+  const outs: { res: Record<string, any>, out: string }[] = useMemo(() => {
+    if (!template) return [];
+    return xmlToJsonInputForCite({ xml: editor?.getHTML() || '', template: template.value })
+  }, [currentTab == 'Output', template])
 
   return (
-    <Paper elevation={2} sx={{ height: 'calc(100vh - 90px)', backgroundColor: 'white', padding: '5px', borderRadius: '5px', }}>
+    <Paper elevation={2} sx={{ height: 'calc(100vh - 100px)', backgroundColor: 'white', padding: '5px', borderRadius: '5px', }}>
       <ReferenceStyleInput />
       {/* 
       <Button
@@ -40,15 +45,18 @@ const OutputTab = () => {
         }}
       >Click</Button>
       <YourComponent /> */}
-      <Box sx={{ height: 'calc(100% - 65px)', overflowY: 'auto' }}>
-        {outs.map((item, index) => (
-          <CustomList key={index}>
-            <ListItem >
-              <ListItemText primary={<span dangerouslySetInnerHTML={{ __html: item }}></span>} />
-              <CopyToClipboardButton toCopy={item} />
-            </ListItem>
-          </CustomList>
-        ))}
+      <Box sx={{ height: 'calc(100% - 75px)', overflowY: 'auto' }}>
+        {outs.map((item, index) => {
+          console.log(item.res);
+          return (
+            <CustomList key={index}>
+              <ListItem >
+                <ListItemText id={`ref-${index}`} primary={<span dangerouslySetInnerHTML={{ __html: item.out }}></span>} />
+                <CopyToClipboardButton toCopy={() => document.querySelector(`#ref-${index}`)?.textContent || ''} />
+              </ListItem>
+            </CustomList>
+          )
+        })}
       </Box>
     </Paper>
   )

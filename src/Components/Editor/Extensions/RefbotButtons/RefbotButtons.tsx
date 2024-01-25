@@ -1,6 +1,4 @@
-import { Button, styled } from '@mui/material'
-import React from 'react'
-import useReferenceElements from '../../../../hooks/useReferenceElements';
+import { Button, styled } from '@mui/material';
 import { useRichTextEditorContext } from 'mui-tiptap';
 import referenceElements from '../../../../utils/faker/referenceElements';
 
@@ -22,12 +20,18 @@ const RefbotButtons = () => {
         const { from, to, empty, $from } = state.selection;
         editor.state.doc.nodesBetween(from, to, (node) => {
             const tr = editor.state.tr;
-            node.marks.forEach(mark => {
-                if (refTags.includes(mark.type.name)) {
-                    tr.removeMark(from, to, mark.type);
-                }
-            })
-            tr.addMark(from, to, editor.schema.marks[markName].create());
+            const marks = node.marks;
+            const targetMark = marks.find(mark => mark.type.name == markName)
+            if (targetMark) {
+                tr.removeMark(from, to, targetMark.type);
+            } else {
+                node.marks.forEach(mark => {
+                    if (refTags.includes(mark.type.name)) {
+                        tr.removeMark(from, to, mark.type);
+                    }
+                })
+                tr.addMark(from, to, editor.schema.marks[markName].create());
+            }
             editor.view.dispatch(tr);
         })
     }
@@ -38,8 +42,10 @@ const RefbotButtons = () => {
             {referenceElements.map((item, index) => (
                 <CustomButton size="small"
                     key={index}
+                    variant='contained'
                     onClick={() => onClickHandler(item.name)}
-                    style={{ backgroundColor: item.color }}>{item.name}</CustomButton>
+                    style={{ backgroundColor: item.color }}
+                >{item.name}</CustomButton>
             ))}
         </>
     )

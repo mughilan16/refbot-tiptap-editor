@@ -4,13 +4,16 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { FormFields } from '../View';
 import { cslTemplated } from '../cslTemplates';
 
+const options = cslTemplated.map(template => ({ label: template.name, value: template.key }));
+// .sort((a, b) => a.label.localeCompare(b.label))
+
 const ReferenceStyleInput = () => {
     const { register, handleSubmit, control, formState } = useFormContext<FormFields>();
     const { errors, isSubmitting } = formState;
 
     return (
         <>
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 20px'}}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 20px' }}>
                 <Controller
                     name='style'
                     control={control}
@@ -24,12 +27,16 @@ const ReferenceStyleInput = () => {
                         const { value, onChange, ref } = field;
                         return (
                             <Autocomplete
-                                sx={{ width: '400px' }}
+                                sx={{ width: '500px' }}
                                 disablePortal
-                                options={Object.keys(cslTemplated).map(key => ({ label: key, value: key }))}
+                                options={options}
                                 onChange={(e, option) => {
                                     onChange(option);
                                     // setValue('macroIds', option?.macros ?? []);
+                                }}
+                                isOptionEqualToValue={(option, value) => {
+                                    // console.log({ option, value });
+                                    return option.value === value.value;
                                 }}
                                 value={value ? value : null}
                                 renderInput={(params) => (

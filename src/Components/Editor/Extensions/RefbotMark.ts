@@ -1,8 +1,6 @@
 import {
     Mark,
-    markInputRule,
-    markPasteRule,
-    mergeAttributes,
+    mergeAttributes
 } from '@tiptap/core'
 import referenceElements from '../../../utils/faker/referenceElements'
 

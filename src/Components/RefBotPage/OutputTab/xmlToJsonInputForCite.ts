@@ -1,8 +1,16 @@
 
 import Cite from 'citation-js';
+import { cslTemplated } from '../cslTemplates';
+// require("citation-js/plugin-bibtex");
+// require("citation-js/plugin-ris");
 
 
-const elementToJson = (el: HTMLElement, type: string) => {
+let config = Cite.plugins.config.get('@csl')
+cslTemplated.map(template => config.templates.add(template.key, template.csl))
+
+
+
+const elementToJson = ({ el, template, type }: { el: HTMLElement, type: string, template: string }) => {
     // [...el.children].map(i => {
     //     console.log(i.tagName);
     // })
@@ -10,19 +18,25 @@ const elementToJson = (el: HTMLElement, type: string) => {
 
     const collectValue = ({ tagName, key }: { tagName: string, key: string }) => {
         const tag = el.querySelector(`r-${tagName}`);
+        console.log(tag, tagName);
         if (tag) {
             res[key] = tag.innerHTML;
         }
     }
 
-    collectValue({ key: 'doi', tagName: 'doi' });
+    [...el.querySelectorAll(`[tag="ref-bot"]`)].forEach(el => {
+        res[el.tagName.toLocaleLowerCase().replace(`r-`, '')] = el.textContent;
+    })
+
+
+    collectValue({ key: 'DOI', tagName: 'doi' });
     collectValue({ key: 'URL', tagName: 'url' });
     collectValue({ key: 'publisher', tagName: 'publisher-name' });
     collectValue({ key: 'publisher-place', tagName: 'publisher-loc' });
     res["container-title"] = type;
     collectValue({ key: 'organizer', tagName: 'collab' });
 
-    const issued = document.querySelector(`q-issued`);
+    const issued = el.querySelector(`q-issued`);
     if (issued) {
         let year = issued.querySelector(`[data-name="year"]`)?.innerText.match(/[0-9]{4}/g)[0];
         let day = issued.querySelector(`[data-name="date-in-citation"]`)?.innerText.match(/[0-9]/g)[0];
@@ -36,23 +50,38 @@ const elementToJson = (el: HTMLElement, type: string) => {
         }
     }
 
+    res['author'] = [];
+    const authors = el.querySelectorAll(`r-author`);
+    authors.forEach(author => {
+        const given = author.querySelector('r-given')?.textContent ?? '';
+        const family = author.querySelector('r-surname')?.textContent ?? '';
+        res['author'].push({
+            given,
+            family,
+        })
+    })
+
+
     const citation = new Cite(res);
-    const out = citation.format('bibliography', { format: 'html', template: 'apa' });
+    const out = citation.format('bibliography', { format: 'html', template });
     // console.log('Formatted HTML:', out);
     return { res, out };
 }
 
 
-const xmlToJsonInputForCite = ({ xml }: { xml: string }): string[] => {
+const xmlToJsonInputForCite = ({ xml, template }: { xml: string, template: string }): { res: Record<string, any>, out: string }[] => {
     var parser = new DOMParser();
     var references = [...parser.parseFromString(xml, 'text/html').querySelectorAll('body p')] as HTMLElement[];
     // var modifiedHtmlString = new XMLSerializer().serializeToString(doc);
     const outs = references.map(reference => {
-        return elementToJson(reference, reference.getAttribute('type') || 'Journal');
+        return elementToJson({
+            el: reference,
+            template,
+            type: reference.getAttribute('type') || 'Journal',
+        });
     })
 
-    return outs.map(i => i.out);
-    console.log();
+    return outs;
 
 }
 
