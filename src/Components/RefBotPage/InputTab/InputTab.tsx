@@ -8,6 +8,7 @@ import axiosLaravel from '../../../utils/axiosLaravel';
 import LoadingDialog from "../LoadingDialog";
 import { FormFields } from '../View';
 import serverXmlResponseSanitize from "../OutputTab/serverXmlResponseSanitize";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const CustomePaper = styled(Paper)({
@@ -39,6 +40,7 @@ const InputTab = () => {
         type: 'SetXmlData',
         payload: {
           data,
+          parentFolder: uuidv4(),
         }
       })
       dispatch({
