@@ -1,5 +1,4 @@
-import { Box, useTheme } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Box, Paper, useTheme } from "@mui/material";
 import {
   MenuButtonBold,
   MenuButtonHighlightColor,
@@ -16,7 +15,9 @@ import {
   MenuDivider
 } from "mui-tiptap";
 import RefbotButtons from "../../Editor/Extensions/RefbotButtons/RefbotButtons";
-import { ExtendRangeButton } from "../../Editor/Extensions/RefbotButtons/ExtendRangeButton";
+import RefbotTabButtons from "../../Editor/Extensions/RefbotTabButtons";
+import RefInputDialog from "../RefInputDialog";
+import { grey } from "@mui/material/colors";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -26,9 +27,18 @@ export default function EditorMenuControls() {
 
   return (
     <MenuControlsContainer>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '4px', border: `2px solid ${grey[300]} !important`, padding: '5px', borderRadius: '5px' }}>
+      <Paper sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '4px',
+        borderRadius: '5px', 
+        backgroundColor: grey[100],
+        padding: '10px 10px 10px 10px',
+        margin: '10px 10px 0 10px',
+      }}>
         {/* <RefbotButtonOption /> */}
         <RefbotButtons />
+        <RefInputDialog open/>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
           <MenuButtonBold />
@@ -82,10 +92,11 @@ export default function EditorMenuControls() {
           <MenuButtonRedo />
           <MenuDivider />
 
+          <RefbotTabButtons />
           {/* <ExtendRangeButton /> */}
 
         </Box>
-      </Box>
+      </Paper>
     </MenuControlsContainer>
   );
 }

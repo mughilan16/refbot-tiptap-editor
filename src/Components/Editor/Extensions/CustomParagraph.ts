@@ -1,5 +1,7 @@
 import { mergeAttributes } from "@tiptap/core";
 import Paragraph from "@tiptap/extension-paragraph";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import ReferenceView from "./ReferenceView";
 // import { removeEmptyAttributes } from "../Services/attributes";
 
 
@@ -11,7 +13,7 @@ export const CustomParagraph = Paragraph.extend({
             },
             {
                 tag: 'ref',
-            }
+            },
         ];
     },
     addAttributes() {
@@ -22,11 +24,25 @@ export const CustomParagraph = Paragraph.extend({
                     return node.getAttribute('type');
                 },
             },
+            input: {
+                default: '',
+            },
+            output: {
+                default: '',
+            },
+            key: {
+                default: 0,
+            },
         };
     },
     renderHTML({ node, HTMLAttributes }) {
         return ['p', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
     },
+
+    addNodeView() {
+        return ReactNodeViewRenderer(ReferenceView)
+    },
+
 })
 
 // ref tyeps

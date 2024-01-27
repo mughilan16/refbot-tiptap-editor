@@ -10,6 +10,7 @@ export type MainTabState = {
     editor: {
         hoverElements: string[],
     }
+    inputDailogShow: boolean,
 }
 
 type Action = {
@@ -21,6 +22,11 @@ type Action = {
     type: "SetXmlData",
     payload: {
         data: string[],
+    }
+} | {
+    type: "ChangeInputDailogVisibility",
+    payload: {
+        show: boolean,
     }
 }
 
@@ -34,6 +40,10 @@ const reducer = (state: MainTabState, aciton: Action) => {
             state.xmlData = aciton.payload.data;
             break;
         }
+        case "ChangeInputDailogVisibility": {
+            state.inputDailogShow = aciton.payload.show;
+            break;
+        }
     }
 
 }
@@ -45,6 +55,7 @@ export const useMainTab = create<MainTabState>()(
         xmlData: [],
         editor: {
             hoverElements: [],
-        }
+        },
+        inputDailogShow: false,
     })),
 )

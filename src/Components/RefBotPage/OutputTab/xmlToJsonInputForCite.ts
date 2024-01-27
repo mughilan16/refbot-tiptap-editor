@@ -10,10 +10,12 @@ cslTemplated.map(template => config.templates.add(template.key, template.csl))
 
 
 
-const elementToJson = ({ el, template, type }: { el: HTMLElement, type: string, template: string }) => {
+export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, type: string, template: string }) => {
     // [...el.children].map(i => {
     //     console.log(i.tagName);
     // })
+    if (!el) return;
+
     const res: Record<string, any> = {};
 
     const collectValue = ({ tagName, key }: { tagName: string, key: string }) => {
@@ -75,6 +77,7 @@ const elementToJson = ({ el, template, type }: { el: HTMLElement, type: string, 
     const citation = new Cite(res);
     const out = citation.format('bibliography', { format: 'html', template });
     // console.log('Formatted HTML:', out);
+    console.log({ res, out });
     return { res, out };
 }
 
