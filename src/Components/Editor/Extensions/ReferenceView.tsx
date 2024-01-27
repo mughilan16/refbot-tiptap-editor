@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { elementToJson } from '../../RefBotPage/OutputTab/xmlToJsonInputForCite';
 import { green, grey, indigo } from '@mui/material/colors';
 import { useMainTab } from '../../../hooks/zustand/useMainTab';
+import { useFormContext } from 'react-hook-form';
+import { FormFields } from '../../RefBotPage/View';
 
 
 const CustomCard = styled(Card)(({ theme }) => ({
@@ -81,22 +83,17 @@ const ReferenceView = (props) => {
     }
 
     const refVisibility = useMainTab(state => state.refVisibility);
+    const style = useFormContext<FormFields>().watch('style');
 
     const key = props.node.attrs.key;
 
-    const [html, setHtml] = useState('');
-
-    useEffect(() => {
-        setHtml(() => {
-            return elementToJson({
-                el: document.querySelector(`div[index="${key}"]`),
-                template: 'apa',
-                type: 'html',
-            })?.out || '';
-        })
-        // console.log(document.querySelector(`div[index="${key}"]`));
-    }, [props.node.content.size]);
     console.log(props.node.content);
+
+    const html = elementToJson({
+        el: document.querySelector(`div[index="${key}"]`),
+        template: style.value,
+        type: 'html',
+    })?.out || '';
 
 
     return (

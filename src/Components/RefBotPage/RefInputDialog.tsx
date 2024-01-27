@@ -42,6 +42,7 @@ export default function RefInputDialog({ open }: { open: boolean }) {
                     data,
                 }
             })
+            editor?.commands.setContent(serverXmlResponseSanitize(data.join('')));
             closeDialog();
         }).catch(error => {
             enqueueSnackbar({

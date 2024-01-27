@@ -39,25 +39,30 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     collectValue({ key: 'organizer', tagName: 'collab' });
 
     // const issued = el.querySelector(`q-issued`);
-    let yearEl = el.querySelector(`[data-name="year"]`) as HTMLElement;
+    let yearEl = el.querySelector(`r-year`) as HTMLElement;
     let dayEl = el.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
     let monthEl = el.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
-    let day, month, year;
+    let day = 10
+    let month = 10
+    let year = 2000;
     if (yearEl != null) {
-        year = yearEl?.innerText.match(/[0-9]{4}/g)[0];
+        year = +yearEl?.innerText.match(/[0-9]{4}/g)[0];
     }
     if (dayEl != null) {
-        day = dayEl?.innerText.match(/[0-9]/g)[0];
+        day = +dayEl?.innerText.match(/[0-9]/g)[0];
     }
     if (monthEl != null) {
-        month = monthEl?.innerText.match(/[0-9]/g)[0];
+        month = +monthEl?.innerText.match(/[0-9]/g)[0];
     }
+
+    // issued: { "date-parts": [[1957, 1, 1]] },
+    
     res['issued'] = {
-        'date-parts': [{
+        'date-parts': [[
             year,
-            day:1,
-            month:1,
-        }]
+            day,
+            month,
+        ]]
     }
 
     res['author'] = [];

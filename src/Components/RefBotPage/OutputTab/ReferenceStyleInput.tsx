@@ -5,7 +5,7 @@ import { FormFields } from '../View';
 import { cslTemplated } from '../cslTemplates';
 
 const options = cslTemplated.map(template => ({ label: template.name, value: template.key }));
-// .sort((a, b) => a.label.localeCompare(b.label))
+const defaultOptions: { label: string, value: string }[] = [{ label: 'APA', value: 'apa' }]
 
 const ReferenceStyleInput = () => {
     const { register, handleSubmit, control, formState } = useFormContext<FormFields>();
@@ -27,7 +27,7 @@ const ReferenceStyleInput = () => {
                     <Autocomplete
                         sx={{ width: '400px' }}
                         disablePortal
-                        options={options}
+                        options={[...defaultOptions, ...options]}
                         onChange={(e, option) => {
                             onChange(option);
                             // setValue('macroIds', option?.macros ?? []);
