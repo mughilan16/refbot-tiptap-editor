@@ -38,28 +38,26 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     res["container-title"] = type;
     collectValue({ key: 'organizer', tagName: 'collab' });
 
-    const issued = el.querySelector(`q-issued`);
-    if (issued) {
-        let yearEl = issued.querySelector(`[data-name="year"]`) as HTMLElement;
-        let dayEl = issued.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
-        let monthEl = issued.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
-        let day, month, year;
-        if (yearEl != null) {
-            year = yearEl?.innerText.match(/[0-9]{4}/g)[0];
-        }
-        if (dayEl != null) {
-            day = dayEl?.innerText.match(/[0-9]/g)[0];
-        }
-        if (monthEl != null) {
-            month = monthEl?.innerText.match(/[0-9]/g)[0];
-        }
-        res['issued'] = {
-            'date-parts': [{
-                year,
-                day,
-                month,
-            }]
-        }
+    // const issued = el.querySelector(`q-issued`);
+    let yearEl = el.querySelector(`[data-name="year"]`) as HTMLElement;
+    let dayEl = el.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
+    let monthEl = el.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
+    let day, month, year;
+    if (yearEl != null) {
+        year = yearEl?.innerText.match(/[0-9]{4}/g)[0];
+    }
+    if (dayEl != null) {
+        day = dayEl?.innerText.match(/[0-9]/g)[0];
+    }
+    if (monthEl != null) {
+        month = monthEl?.innerText.match(/[0-9]/g)[0];
+    }
+    res['issued'] = {
+        'date-parts': [{
+            year,
+            day:1,
+            month:1,
+        }]
     }
 
     res['author'] = [];

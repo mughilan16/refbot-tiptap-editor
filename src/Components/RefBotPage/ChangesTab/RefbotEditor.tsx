@@ -9,7 +9,7 @@ const RefbotEditor = () => {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', height: `100vh`, backgroundColor: grey[50] }}>
             <EditorMenuControls />
-            <Paper className='editor-container' sx={{ height: 'calc(100vh - 80px)', overflowY: 'scroll', margin: '10px',  }}>
+            <Paper className='editor-container' sx={{ height: 'calc(100vh - 80px)', overflowY: 'scroll', margin: '10px', backgroundColor: grey[300] }}>
                 <RichTextField
                     RichTextContentProps={{ className: 'editor-filed' }}
                 />

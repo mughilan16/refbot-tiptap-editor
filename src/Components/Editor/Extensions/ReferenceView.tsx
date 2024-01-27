@@ -3,27 +3,21 @@ import { NodeViewContent, NodeViewWrapper } from '@tiptap/react'
 import React, { useEffect, useState } from 'react'
 import { elementToJson } from '../../RefBotPage/OutputTab/xmlToJsonInputForCite';
 import { green, grey, indigo } from '@mui/material/colors';
+import { useMainTab } from '../../../hooks/zustand/useMainTab';
 
 
 const CustomCard = styled(Card)(({ theme }) => ({
     border: `1px solid ${theme.palette.grey[100]} !important`,
     position: 'relative',
     marginBottom: `30px`,
+    boxShadow: theme.shadows['2'],
+    zIndex: 100,
     '&:hover': {
         border: `1px solid ${theme.palette.grey[400]} !important`,
         boxShadow: theme.shadows['2'],
     },
     "& .MuiDivider-root": {
         borderColor: `${theme.palette.grey[300]} !important`,
-    },
-    '& .MuiCardContent-root[data-label="Annotation"]': {
-        backgroundColor: `${grey[50]} !important`,
-    },
-    '& .MuiCardContent-root[data-label="Input"]': {
-        backgroundColor: `${green[50]} !important`,
-    },
-    '& .MuiCardContent-root[data-label="Output"]': {
-        backgroundColor: `${indigo[50]} !important`,
     },
     "&:before": {
         color: grey[100],
@@ -34,15 +28,26 @@ const CustomCard = styled(Card)(({ theme }) => ({
         minWidth: `60px`,
         textAlign: 'center',
         content: 'attr(data-label)',
-        position: 'absolute',
-        top: '0px',
+        position: 'static',
+        top: '100px',
         fontWeight: 800,
         left: '0px',
+        zIndex: 101,
     },
     "&:hover .MuiCardContent-root:before": {
         color: grey[100],
-        content: 'attr(data-label) !important',
-    }
+        opacity: 1,
+        zIndex: 102,
+    },
+    '& .MuiCardContent-root[data-label="Annotation"]': {
+        backgroundColor: `${grey[50]} !important`,
+    },
+    '& .MuiCardContent-root[data-label="Input"]': {
+        backgroundColor: `${grey[200]} !important`,
+    },
+    '& .MuiCardContent-root[data-label="Output"]': {
+        backgroundColor: `${grey[200]} !important`,
+    },
 }));
 
 const CustomCardContent = styled(CardContent)(({ theme }) => ({
@@ -57,11 +62,14 @@ const CustomCardContent = styled(CardContent)(({ theme }) => ({
         borderRadius: '2px',
         minWidth: `60px`,
         textAlign: 'center',
-        content: 'attr(data-empyt)',
+        content: 'attr(data-label)',
+        opacity: 0,
         position: 'absolute',
         top: '0px',
         fontWeight: 800,
         left: '0px',
+        transition: `opacity .2s ease-in-out`,
+        zIndex: 0,
     },
 }));
 
@@ -71,6 +79,8 @@ const ReferenceView = (props) => {
             count: props.node.attrs.count + 1,
         })
     }
+
+    const refVisibility = useMainTab(state => state.refVisibility);
 
     const key = props.node.attrs.key;
 
@@ -92,19 +102,17 @@ const ReferenceView = (props) => {
     return (
         <NodeViewWrapper className="react-component">
             <CustomCard data-empty="" data-label={props.node.attrs.type}>
-                <CustomCardContent data-empty="" data-label="Input">
+                {refVisibility.input && <CustomCardContent data-empty="" data-label="Input">
                     {props.node.attrs.input}
-                </CustomCardContent>
-                {/* <Divider /> */}
+                </CustomCardContent>}
                 <CustomCardContent data-empty="" data-label="Annotation">
                     <NodeViewContent index={key} className="content" />
                 </CustomCardContent>
-                {/* <Divider /> */}
-                <CustomCardContent data-empty="" data-label="Output">
+                {refVisibility.output && <CustomCardContent data-empty="" data-label="Output">
                     <div dangerouslySetInnerHTML={{
                         __html: html
                     }}></div>
-                </CustomCardContent>
+                </CustomCardContent>}
             </CustomCard>
         </NodeViewWrapper>
     )

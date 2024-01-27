@@ -4,7 +4,10 @@ import { immer } from 'zustand/middleware/immer'
 export const tabs = ['Input', "Changes", "Output"] as const;
 
 export type MainTabState = {
-    currentTab: 'Input' | "Output" | "Changes"
+    refVisibility: {
+        input: boolean,
+        output: boolean,
+    }
     dispatch: (action: Action) => void,
     xmlData: string[],
     editor: {
@@ -14,11 +17,6 @@ export type MainTabState = {
 }
 
 type Action = {
-    type: "ChangeTab",
-    payload: {
-        tab: MainTabState['currentTab'],
-    }
-} | {
     type: "SetXmlData",
     payload: {
         data: string[],
@@ -28,14 +26,13 @@ type Action = {
     payload: {
         show: boolean,
     }
+} | {
+    type: "Functon",
+    set: (state: MainTabState) => void
 }
 
 const reducer = (state: MainTabState, aciton: Action) => {
     switch (aciton.type) {
-        case "ChangeTab": {
-            state.currentTab = aciton.payload.tab;
-            break;
-        }
         case "SetXmlData": {
             state.xmlData = aciton.payload.data;
             break;
@@ -44,14 +41,20 @@ const reducer = (state: MainTabState, aciton: Action) => {
             state.inputDailogShow = aciton.payload.show;
             break;
         }
+        case "Functon": {
+            aciton.set(state);
+        }
     }
 
 }
 
 export const useMainTab = create<MainTabState>()(
     immer((set) => ({
-        currentTab: 'Input',
         dispatch: (action => set((state) => reducer(state, action))),
+        refVisibility: {
+            input: false,
+            output: false,
+        },
         xmlData: [],
         editor: {
             hoverElements: [],

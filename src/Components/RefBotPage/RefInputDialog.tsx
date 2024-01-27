@@ -10,6 +10,7 @@ import axiosLaravel from '../../utils/axiosLaravel';
 import serverXmlResponseSanitize from './OutputTab/serverXmlResponseSanitize';
 import { Box, DialogActions, Paper, TextField, styled } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function RefInputDialog({ open }: { open: boolean }) {
 
@@ -31,9 +32,9 @@ export default function RefInputDialog({ open }: { open: boolean }) {
             }
         })
     }
-
+    
     const onSubmit = (data: FormFields) => {
-        return axiosLaravel.post('/ref-bot-styler', { text: data.content }).then(res => {
+        return axiosLaravel.post('/ref-bot-styler', { text: data.content, parentFolder: `ref-bot/${uuidv4()}` }).then(res => {
             const data = res.data.data.out as string[];
             dispatch({
                 type: 'SetXmlData',
@@ -41,7 +42,6 @@ export default function RefInputDialog({ open }: { open: boolean }) {
                     data,
                 }
             })
-            editor?.commands.setContent(serverXmlResponseSanitize(data.join('')));
             closeDialog();
         }).catch(error => {
             enqueueSnackbar({
@@ -66,7 +66,7 @@ export default function RefInputDialog({ open }: { open: boolean }) {
         >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <DialogTitle sx={{ margin: '10px 50px', textAlign: 'center' }} id="alert-dialog-title">
-                    Reference citation input
+                    Reference input
                 </DialogTitle>
                 <DialogContent>
                     {/* <LoadingDialog open={true}/> */}
