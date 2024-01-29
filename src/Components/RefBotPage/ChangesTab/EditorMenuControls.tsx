@@ -19,6 +19,7 @@ import RefbotTabButtons from "../../Editor/Extensions/RefbotTabButtons";
 import RefInputDialog from "../RefInputDialog/RefInputDialog";
 import { grey } from "@mui/material/colors";
 import ReferenceStyleInput from "../OutputTab/ReferenceStyleInput";
+import ElementNestingLevel from "../ElementNestingLevel";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -93,8 +94,11 @@ export default function EditorMenuControls() {
           <MenuButtonRedo />
           <MenuDivider />
 
-          <RefbotTabButtons />
-          <ReferenceStyleInput />
+          <Box sx={{display: 'flex', justifyContent: 'flex-start', alignContent: 'center', alignItems: 'center'}}>
+            <RefbotTabButtons />
+            <ReferenceStyleInput />
+            <ElementNestingLevel />
+          </Box>
 
           {/* <ExtendRangeButton /> */}
 

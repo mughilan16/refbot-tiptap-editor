@@ -1,5 +1,5 @@
 import { LoadingButton } from '@mui/lab';
-import { DialogActions, Typography } from '@mui/material';
+import { DialogActions, Divider, Typography } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -76,12 +76,14 @@ export default function RefInputDialog({ open }: { open: boolean }) {
                 <DialogTitle sx={{ margin: '10px 50px', textAlign: 'center' }} id="alert-dialog-title">
                     Reference input
                 </DialogTitle>
-                <DialogContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px'}}>
+                <Divider/>
+                <DialogContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', padding: '10px'}}>
                     {/* <LoadingDialog open={true}/> */}
                     <TextInput/>
                     <Typography>(or)</Typography>
                     <FileInput/>
                 </DialogContent>
+                <Divider/>
                 <DialogActions sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <LoadingButton type='submit' loading={isSubmitting} variant='contained' style={{ minWidth: '150px' }}>Submit</LoadingButton>
                 </DialogActions>

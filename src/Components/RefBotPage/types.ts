@@ -1,5 +1,6 @@
 let data = {
     "id": "item1",                      // Unique identifier for the item
+    // book title
     "title": "Example Title",           // Title of the work
     "author": [                         // Array of authors
         { "family": "Doe", "given": "John" },
@@ -15,7 +16,8 @@ let data = {
         // Add more translators as needed
     ],
     "issued": { "date-parts": [[2022, 1, 25]] },  // Date of publication
-    "container-title": "Journal of Examples",  // Title of the journal or book series
+    // source
+    "container-title": "Journal of Examples",  // Title of the journal or book series 
     "page": "123-145",                   // Page range of the work
     "volume": "7",                       // Volume number
     "issue": "2",                        // Issue number
