@@ -4,7 +4,7 @@ Kimura, H. (2012). Physiological and pathophysiological functions of hydrogen su
 Statistics Korea. Statistics on the Cause of Death in Koreans in 2020. Statistics Korea; Daejeon, Republic of Korea; 2021.
 Korea Centers for Disease Control and Prevention. Quality Control of Anthropometric and Grip Strength Measurement. Korea: Korea National Health and Nutrition Examination Survey; 2019.
 Korea Centers for Disease Control and Prevention. Procedural Manual of the Sixth (2013&#x2013;2015) Korea National Health and Nutrition Examination Survey. 2013. Korea Disease Control Prevention Agency, Republic of Korea.
-World Health Organization Regional Office for the Western Pacific Region; International Association for the Study of Obesity; International Obesity Task Force. The Asian-Pacific Perspective: Redefining Obesity and Its Treatment. Sydney: Health Communications Australia; 2000.
+World Health Organization Regional Office for the Western Pacific Region; International Association for the Study of Obesity; International Obesity Task Force. The Asian-Pacific Perspective: Redefining Obesity and Its Treatment. Sydney: Health Communications Australia; 2001.
 Hayes AF. Introduction to Mediation, Moderation, and Conditional Process Analysis: A Regression-Based Approach. New York: The Guilford Press; 2013.
 Efron, B., and Tibshirani, R.J. (1993). An Introduction to the Bootstrap. Chapman &#x0026; Hall: New York.
 Agresti, A. (2010). Analysis of Ordinal Categorical Data, Volume 656. John Wiley and Sons: Hoboken, NJ.
@@ -18,7 +18,7 @@ Davis, G.A., Makdissi, M., Harcourt, P., Clifton, P., and McCrory, P. (2017). Th
 Eagan, K., Stolzenberg, E.B., Ramirez, J.J., Aragon, M.C., Suchard, M.R., and Hurtado, S. (2014). The American Freshman: National Norms Fall 2014. Higher Education Research Institute, UCLA: Los Angeles, CA.
 American Psychiatric Association (2013). Diagnostic and Statistical Manual of Mental Disorders. 5th ed. American Psychiatric Association: Washington, D.C.
 Horn, L., and Nevill, S. (2006). Profile of undergraduates in U.S. Postsecondary education Institutions: 2003&#x2013;04: With a Special Analysis of Community College Students (NCES 2006-184). National Center for Education Statistics, U.S. Department of Education: Washington, DC:
-Achenbach, T.M., and Rescorla, L.A. (2000). Manual for the ASEBA School-Age Forms and Profiles. University of Vermont, Research Center for Children, Youth, and Families: Burlington, VT.
+Achenbach, T.M., and Rescorla, L.A. (2001). Manual for the ASEBA School-Age Forms and Profiles. University of Vermont, Research Center for Children, Youth, and Families: Burlington, VT.
 Harrell, F.E. General aspects of fitting regression models. In: Regression Modeling Strategies. Springer Series in Statistics. Cham, Switzerland: Springer, 2015, pp. 13&#x2013;44.
 R Core Team (2018). R: A language and environment for statistical computing. R Foundation for Statistical Computing. Vienna, Austria.
 Centers for Disease Control and Prevention. Report to Congress: The Management of TBI in Children. Atlanta, GA: National Center for Injury Prevention and Control; Division of Unintentional Injury Prevention: 2018.
@@ -71,7 +71,7 @@ Henderson, Michael, and Hillygus, D. Sunshine. 2011. &#x201C;The Dynamics of Hea
 Centers for Disease Control and Prevention. (2003). Report to Congress on Mild Traumatic Brain Injury in the United States: Steps to Prevent a Serious Public Health Problem. Centers for Disease Control and Prevention: Atlanta, GA.
 Leach, J., Dudley, J., McAllister, A., and Myer, G.D. (2018). Cerebrovascular response to jugular compression: preliminary evaluation of a novel intracranial protective mechanism. Presented at the Radiographic Society of North America Annual Meeting, Chicago.
 Delmonico, R.L., Theodore, B.R., Sandel, M.E., Armstrong, M.A., and Camicia, M. (2021). Prevalence of depression and anxiety disorders following mild traumatic brain injury. PMR.
-Faul M, Xu L, Wald MM, Coronado V. (2010). Traumatic Brain Injury in the United States. Emergency Department Visits, Hospitalizations and Deaths 2000&#x2013;2006. Centers for Disease Control and Prevention, National Center for Injury Prevention and Control: Atlanta, GA.
+Faul M, Xu L, Wald MM, Coronado V. (2010). Traumatic Brain Injury in the United States. Emergency Department Visits, Hospitalizations and Deaths 2001&#x2013;2006. Centers for Disease Control and Prevention, National Center for Injury Prevention and Control: Atlanta, GA.
 Association for the Advancement of Automatic Medicine. (2001). The Abbreviated Injury Scale, 1990 Revision, Update 98. Association for the Advancement of Automatic Medicine: Chicago, IL.
 Guidelines Committee on the Management of Severe Head Injury, Japan Neurosurgical Society, Japan Society of Neurotraumatology, Japanese Association for the Surgery of Trauma. (2019). Guidelines for the Management of Severe Head Injury, 4th ed. Igaku-Shoin: Tokyo, Japan.
 National Center for Injury Prevention and Control. (2003) Report to Congress on Mild Traumatic Brain Injury in the United States: Steps to Prevent a Serious Public Health Problem. Centers for Disease Control and Prevention: Atlanta, GA.
@@ -81,5 +81,5 @@ Holland Bloorview Kids Rehabilitation Hospital. (2017). Concussion and You: A Ha
 Copani, A., and Nicoletti, F. Cell-cycle mechanisms and neuronal cell death. (Kluwer Academic/Plenum, 2005).
 International Standards for Neurological Classifications of Spinal Cord Injury (revised 2019). American Spinal Injury Association: Richmond, VA; 2019.
 Fox, J., and Weisberg, S. (2019). An R Companion to Applied Regression, Third Edition. Sage Publications: Thousand Oaks, CA.
-Wells, G.A., Shea, B., O&#x0027;Connell, D.A., Peterson, J., Welch, V., Losos, M., and Tugwell, P. (2000). The Newcastle&#x2013;Ottawa Scale (NOS) for Assessing the Quality of Nonrandomised Studies in Meta-Analyses. Ottawa, Ontario, Canada: Oxford.
+Wells, G.A., Shea, B., O&#x0027;Connell, D.A., Peterson, J., Welch, V., Losos, M., and Tugwell, P. (2001). The Newcastle&#x2013;Ottawa Scale (NOS) for Assessing the Quality of Nonrandomised Studies in Meta-Analyses. Ottawa, Ontario, Canada: Oxford.
 Jurick, S.M. (2018). Markers of Mild Traumatic Brain Injury: Integration of In Vivo Myelin Imaging, Neuropsychological Measures of Processing Speed, and Subjective Post-concussive Symptoms. University of California: San Diego.`

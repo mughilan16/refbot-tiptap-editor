@@ -1,4 +1,3 @@
-import React from 'react'
 
 const serverXmlResponseSanitize = (xml: string) => {
     xml = xml.replaceAll('source', 'r-source');
@@ -12,7 +11,7 @@ const serverXmlResponseSanitize = (xml: string) => {
         ref.setAttribute('input', ref.textContent ?? '');
         ref.setAttribute('index', index + '');
     })
-    window.xml = data.innerHTML;
+    // window.xml = data.innerHTML;
     console.log(data.innerHTML);
     return data.innerHTML;
 }

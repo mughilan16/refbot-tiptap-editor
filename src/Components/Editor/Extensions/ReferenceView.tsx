@@ -110,7 +110,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
             out = elementToJson({
                 el: document.querySelector(`[data-index="${index}"] .content`),
                 template: style?.value ?? 'apa',
-                type: 'text',
+                type: 'article',
             })?.out || '';
         } catch (error) {
             console.log(error);
