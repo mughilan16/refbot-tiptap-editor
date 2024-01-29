@@ -42,28 +42,38 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     let yearEl = el.querySelector(`r-year`) as HTMLElement;
     let dayEl = el.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
     let monthEl = el.querySelector(`[data-name="date-in-citation"]`) as HTMLElement;
-    let day = 10
-    let month = 10
-    let year = 2000;
-    if (yearEl != null) {
-        year = +yearEl?.innerText.match(/[0-9]{4}/g)[0];
+    let yearNum = yearEl?.innerText.match(/[0-9]{4}/g);
+    let dayNum = dayEl?.innerText.match(/[0-9]/g);
+    let monthNum = monthEl?.innerText.match(/[0-9]/g);
+    let day = null
+    let month = null
+    let year = null
+    if (yearNum?.length) {
+        year = yearNum[0];
     }
-    if (dayEl != null) {
-        day = +dayEl?.innerText.match(/[0-9]/g)[0];
+    if (dayNum?.length) {
+        day = dayNum[0];
     }
-    if (monthEl != null) {
-        month = +monthEl?.innerText.match(/[0-9]/g)[0];
+    if (monthNum?.length) {
+        month = monthNum[0];
     }
 
     // issued: { "date-parts": [[1957, 1, 1]] },
-    
+
     res['issued'] = {
         'date-parts': [[
             year,
             day,
             month,
-        ]]
+        ].filter(i => i != null)]
     }
+    // res['issued'] = {
+    //     'date-parts': [[
+    //         year,
+    //         day || 1,
+    //         month || 1,
+    //     ]]
+    // }
 
     res['author'] = [];
     const authors = el.querySelectorAll(`r-author`);

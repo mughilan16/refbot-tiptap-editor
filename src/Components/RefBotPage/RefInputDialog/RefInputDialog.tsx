@@ -1,16 +1,23 @@
+import { LoadingButton } from '@mui/lab';
+import { DialogActions, Typography } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useRichTextEditorContext } from "mui-tiptap";
 import { useSnackbar } from "notistack";
-import { Controller, useFormContext } from 'react-hook-form';
-import { FormFields } from './View';
-import { useMainTab } from '../../hooks/zustand/useMainTab';
-import axiosLaravel from '../../utils/axiosLaravel';
-import serverXmlResponseSanitize from './OutputTab/serverXmlResponseSanitize';
-import { Box, DialogActions, Paper, TextField, styled } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
+import { useFormContext } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
+import { useMainTab } from '../../../hooks/zustand/useMainTab';
+import axiosLaravel from '../../../utils/axiosLaravel';
+import serverXmlResponseSanitize from '../OutputTab/serverXmlResponseSanitize';
+import TextInput from './TextInput';
+import FileInput from './FileInput';
+
+export type FormFields = {
+    content: string,
+    style: { label: string, value: string },
+    docxFile: FileList | null
+}
 
 export default function RefInputDialog({ open }: { open: boolean }) {
 
@@ -32,7 +39,7 @@ export default function RefInputDialog({ open }: { open: boolean }) {
             }
         })
     }
-    
+
     const onSubmit = (data: FormFields) => {
         return axiosLaravel.post('/ref-bot-styler', { text: data.content, parentFolder: `ref-bot/${uuidv4()}` }).then(res => {
             const data = res.data.data.out as string[];
@@ -69,28 +76,11 @@ export default function RefInputDialog({ open }: { open: boolean }) {
                 <DialogTitle sx={{ margin: '10px 50px', textAlign: 'center' }} id="alert-dialog-title">
                     Reference input
                 </DialogTitle>
-                <DialogContent>
+                <DialogContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px'}}>
                     {/* <LoadingDialog open={true}/> */}
-                    <Controller
-                        name='content'
-                        control={control}
-                        rules={{
-                            required: 'This field is required',
-                        }}
-                        render={({ field }) => (
-                            <TextField
-                                // style={{margin: '10px'}}
-                                multiline
-                                fullWidth
-                                rows={15}
-                                // label='Text'
-                                InputProps={{ ...field, }}
-                                value={'toLowerCase'}
-                                error={!!errors.content}
-                                helperText={errors.content?.message}
-                            />
-                        )}
-                    />
+                    <TextInput/>
+                    <Typography>(or)</Typography>
+                    <FileInput/>
                 </DialogContent>
                 <DialogActions sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <LoadingButton type='submit' loading={isSubmitting} variant='contained' style={{ minWidth: '150px' }}>Submit</LoadingButton>

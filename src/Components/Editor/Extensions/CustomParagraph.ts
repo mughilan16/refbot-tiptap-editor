@@ -2,7 +2,9 @@ import { mergeAttributes } from "@tiptap/core";
 import Paragraph from "@tiptap/extension-paragraph";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 import ReferenceView from "./ReferenceView";
+import { generateRandomNumber } from "../../../utils/generateRandomNumber";
 // import { removeEmptyAttributes } from "../Services/attributes";
+
 
 
 export const CustomParagraph = Paragraph.extend({
@@ -30,8 +32,8 @@ export const CustomParagraph = Paragraph.extend({
             output: {
                 default: '',
             },
-            key: {
-                default: 0,
+            index: {
+                default: generateRandomNumber(1, 1000),
             },
         };
     },

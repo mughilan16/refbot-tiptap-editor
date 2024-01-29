@@ -7,6 +7,7 @@ export type MainTabState = {
     refVisibility: {
         input: boolean,
         output: boolean,
+        annotation: boolean,
     }
     dispatch: (action: Action) => void,
     xmlData: string[],
@@ -53,7 +54,8 @@ export const useMainTab = create<MainTabState>()(
         dispatch: (action => set((state) => reducer(state, action))),
         refVisibility: {
             input: false,
-            output: false,
+            output: true,
+            annotation: true,
         },
         xmlData: [],
         editor: {

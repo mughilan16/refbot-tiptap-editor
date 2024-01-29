@@ -16,8 +16,9 @@ import {
 } from "mui-tiptap";
 import RefbotButtons from "../../Editor/Extensions/RefbotButtons/RefbotButtons";
 import RefbotTabButtons from "../../Editor/Extensions/RefbotTabButtons";
-import RefInputDialog from "../RefInputDialog";
+import RefInputDialog from "../RefInputDialog/RefInputDialog";
 import { grey } from "@mui/material/colors";
+import ReferenceStyleInput from "../OutputTab/ReferenceStyleInput";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -31,14 +32,14 @@ export default function EditorMenuControls() {
         display: 'flex',
         flexWrap: 'wrap',
         gap: '4px',
-        borderRadius: '5px', 
+        borderRadius: '5px',
         backgroundColor: grey[100],
         padding: '10px 10px 10px 10px',
         margin: '10px 10px 0 10px',
       }}>
         {/* <RefbotButtonOption /> */}
         <RefbotButtons />
-        <RefInputDialog open/>
+        <RefInputDialog open />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
           <MenuButtonBold />
@@ -93,6 +94,8 @@ export default function EditorMenuControls() {
           <MenuDivider />
 
           <RefbotTabButtons />
+          <ReferenceStyleInput />
+
           {/* <ExtendRangeButton /> */}
 
         </Box>
