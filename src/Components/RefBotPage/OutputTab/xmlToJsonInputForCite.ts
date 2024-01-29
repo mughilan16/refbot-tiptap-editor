@@ -16,26 +16,25 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     // })
     if (!el) return;
 
-    const res: Record<string, any> = {};
+    const res: ReferenceInput = {};
 
-    const collectValue = ({ tagName, key }: { tagName: string, key: string }) => {
+    const collectValue = ({ tagName, key }: { tagName: string, key: keyof Omit<ReferenceInput, 'author' | 'issued' | 'editor' | 'translator'> }) => {
         const tag = el.querySelector(`r-${tagName}`);
-        console.log(tag, tagName);
         if (tag) {
             res[key] = tag.innerHTML;
         }
     }
 
-    [...el.querySelectorAll(`[tag="ref-bot"]`)].forEach(el => {
-        res[el.tagName.toLocaleLowerCase().replace(`r-`, '')] = el.textContent;
-    })
+    // [...el.querySelectorAll(`[tag="ref-bot"]`)].forEach(el => {
+    //     res[el.tagName.toLocaleLowerCase().replace(`r-`, '')] = el.textContent;
+    // })
 
 
     collectValue({ key: 'DOI', tagName: 'doi' });
     collectValue({ key: 'URL', tagName: 'url' });
     collectValue({ key: 'publisher', tagName: 'publisher-name' });
     collectValue({ key: 'publisher-place', tagName: 'publisher-loc' });
-    res["container-title"] = type;
+    collectValue({ key: 'container-title', tagName: 'source' });
     collectValue({ key: 'organizer', tagName: 'collab' });
 
     // const issued = el.querySelector(`q-issued`);
