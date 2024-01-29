@@ -3,9 +3,10 @@ import { useRichTextEditorContext } from 'mui-tiptap';
 import { useMainTab } from '../../../../hooks/zustand/useMainTab';
 import referenceElements from '../../../../utils/faker/referenceElements';
 
-const CustomButton = styled(Button)({
+const CustomButton = styled(Button)(({theme}) => ({
     padding: `2px 4px`,
-});
+    boxShadow: theme.shadows[0]
+}));
 
 const refTags = referenceElements.map(refEl => refEl.name).filter(i => !['author'].includes(i));
 

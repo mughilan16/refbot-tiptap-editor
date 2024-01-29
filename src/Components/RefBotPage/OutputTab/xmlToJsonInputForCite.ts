@@ -59,9 +59,10 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     collectValue({ key: 'URL', tagName: 'url' });
     collectValue({ key: 'publisher', tagName: 'publisher-name' });
     collectValue({ key: 'container-title', tagName: 'source' });
-    // collectValue({ key: 'publisher-place', tagName: 'publisher-loc' });
+    collectValue({ key: 'publisher-place', tagName: 'publisher-loc' });
     // collectValue({ key: 'organizer', tagName: 'collab' });
     collectValue({ key: 'page', tagName: 'pages' });
+    collectValue({ key: 'edition', tagName: 'edition' });
 
     // const issued = el.querySelector(`q-issued`);
     let yearEl = el.querySelector(`r-year`) as HTMLElement;
@@ -87,9 +88,9 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
 
     res['issued'] = {
         'date-parts': [[
-            year ?? 2000,
-            day ?? 10,
-            month ?? 10,
+            year,
+            day,
+            month,
         ]]
     }
     // res['issued'] = {
@@ -112,6 +113,9 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
             })
         }
     })
+
+    // testing
+    res['publisher-place'] = 'original-place';
 
     const citation = new Cite(res);
     const out = citation.format('bibliography', { format: 'text', template });

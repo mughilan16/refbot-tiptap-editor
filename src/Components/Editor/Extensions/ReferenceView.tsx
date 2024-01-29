@@ -63,6 +63,9 @@ const CustomCard = styled(Card)(({ theme }) => ({
     '& .MuiCardContent-root[data-label="Output"]:hover [data-testid="ContentCopyIcon"]': {
         visibility: 'visible',
     },
+    '& .MuiCardContent-root[data-label="Output"]:hover .MuiIconButton-root': {
+        backgroundColor: theme.palette.grey[300]
+    },
     '& .MuiCardContent-root': {
         position: 'relative',
         padding: '15px !important',

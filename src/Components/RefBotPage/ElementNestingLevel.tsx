@@ -16,7 +16,7 @@ const ElementNestingLevel = () => {
     // console.log(hoverElements);
 
     return (
-        <Box sx={{ height: '26px', padding: '0px', border: `2px solid ${grey[300]} !important`, marginTop: '10px', borderRadius: '4px' }}>
+        <Box sx={{ height: '26px', padding: '0px', borderRadius: '4px', width: 'auto', margin: '0 5px', backgroundColor: grey[100] }}>
             <Breadcrumbs separator=">" >
                 {hoverElements.map(el => HoverdElement[el])}
             </Breadcrumbs>

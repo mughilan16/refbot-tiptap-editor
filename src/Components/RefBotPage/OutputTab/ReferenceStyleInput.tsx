@@ -29,6 +29,7 @@ const ReferenceStyleInput = () => {
         <StyledBox>
             <Button size="small"
                 variant='contained'
+                disableElevation
                 onClick={() => {
                     dispatch({
                         type: 'ChangeInputDailogVisibility',
@@ -52,7 +53,7 @@ const ReferenceStyleInput = () => {
                     return (
                         <Autocomplete
                             sx={{
-                                width: '400px',
+                                width: '300px',
                                 "& .MuiOutlinedInput-root": {
                                     padding: `0 important`,
                                 }

@@ -43,9 +43,11 @@ type ReferenceInput = {
     editor?: Name[],
     translator?: Name[],
     issued?: {
-        "date-parts": [[number, number, number]]
+        "date-parts": [number | null, number | null, number | null][] | [number | null, number | null][] | [number | null][]
     },
     "container-title"?: string,
+    "publisher-place"?: string,
+    edition?: string,
     page?: string,
     volume?: string,
     issue?: string,

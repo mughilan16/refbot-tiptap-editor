@@ -1,13 +1,13 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { IconButton, Tooltip } from '@mui/material';
+import { IconButton, IconButtonProps, Tooltip } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useState } from 'react';
 import WpsTooltip from './WpsTooltip';
 
 type CopyToClipboardButtonProps = {
     toCopy: string | (() => string),
-}
+} & IconButtonProps
 
 type CopyState = { icon: 'copy' | 'tick' | 'wrong' }
 
@@ -18,7 +18,7 @@ const Icons: Record<CopyState['icon'], React.ReactElement> = {
 }
 
 
-const CopyToClipboardButton = ({ toCopy }: CopyToClipboardButtonProps) => {
+const CopyToClipboardButton = ({ toCopy, ...rest }: CopyToClipboardButtonProps) => {
 
     const [state, setState] = useState<CopyState>({
         icon: 'copy',
@@ -45,6 +45,7 @@ const CopyToClipboardButton = ({ toCopy }: CopyToClipboardButtonProps) => {
 
     return (
         <IconButton
+            {...rest}
             onClick={onClickHandler}
         >
             {Icons[state.icon]}
