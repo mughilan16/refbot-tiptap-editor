@@ -18,12 +18,22 @@ export default function App() {
     },
   });
 
+
   return (
     <MuiThemeProvider>
       <CssBaseline />
       <MuiSnakbarProvider>
         <FormProvider {...methods}>
           <RefbotEditorProvider>
+            <style>{referenceElements.map(refEl => {
+              let name = refEl.name;
+              if(name == 'surname'){
+                name = 'family';
+              }else if(name == 'label'){
+                name = 'r-label';
+              }
+              return `${name}{background-color: ${refEl.color}}`
+            })}</style>
             <RefbotEditor />
           </RefbotEditorProvider>
         </FormProvider>

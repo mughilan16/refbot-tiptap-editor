@@ -89,8 +89,8 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     res['issued'] = {
         'date-parts': [[
             year,
-            day,
-            month,
+            // day ?? 10,
+            // month ?? 10,
         ]]
     }
     // res['issued'] = {

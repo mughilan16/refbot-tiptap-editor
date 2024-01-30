@@ -142,7 +142,7 @@ export const cslTemplated: { csl: string, name: string, key: string }[] = [
             second-field-align="flush">
             <layout>
                 <text variable="citation-number" suffix="." />
-                <text macro="author" prefix="surya" suffix="surya" />
+                <text macro="author"/>
                 <text macro="title" prefix=" " suffix="." />
                 <choose>
                     <if type="bill book graphic legislation motion_picture report song" match="any">

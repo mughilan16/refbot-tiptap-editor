@@ -7,6 +7,7 @@ const serverXmlResponseSanitize = (xml: string) => {
         author.setAttribute('index', `${index++}`);
         console.log(author, author.childElementCount);
     })
+    
     data.querySelectorAll('ref').forEach((ref, index) => {
         ref.setAttribute('input', ref.textContent ?? '');
         ref.setAttribute('index', index + '');

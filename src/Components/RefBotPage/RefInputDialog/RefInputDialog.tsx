@@ -80,8 +80,8 @@ export default function RefInputDialog({ open }: { open: boolean }) {
                 <DialogContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', padding: '10px'}}>
                     {/* <LoadingDialog open={true}/> */}
                     <TextInput/>
-                    <Typography>(or)</Typography>
-                    <FileInput/>
+                    {/* <Typography>(or)</Typography>
+                    <FileInput/> */}
                 </DialogContent>
                 <Divider/>
                 <DialogActions sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
