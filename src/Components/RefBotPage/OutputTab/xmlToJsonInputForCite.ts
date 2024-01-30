@@ -119,7 +119,7 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
 
     const citation = new Cite(res);
     const out = citation.format('bibliography', { format: 'text', template });
-    console.log(res);
+    console.log({ res, out });
     return { res, out };
 }
 

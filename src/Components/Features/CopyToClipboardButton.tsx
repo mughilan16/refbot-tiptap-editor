@@ -33,7 +33,6 @@ const CopyToClipboardButton = ({ toCopy, ...rest }: CopyToClipboardButtonProps) 
             text = toCopy;
         }
         try {
-
             await copy(text);
             setState(pre => ({ ...pre, icon: 'tick' }))
         } catch (error) {

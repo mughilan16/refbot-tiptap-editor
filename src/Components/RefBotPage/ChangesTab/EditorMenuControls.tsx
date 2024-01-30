@@ -20,6 +20,7 @@ import RefInputDialog from "../RefInputDialog/RefInputDialog";
 import { grey } from "@mui/material/colors";
 import ReferenceStyleInput from "../OutputTab/ReferenceStyleInput";
 import ElementNestingLevel from "../ElementNestingLevel";
+import TextCompareButton from "../../Editor/Extensions/TextCompareButton";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -96,6 +97,7 @@ export default function EditorMenuControls() {
 
           <Box sx={{display: 'flex', justifyContent: 'flex-start', alignContent: 'center', alignItems: 'center'}}>
             <RefbotTabButtons />
+            <TextCompareButton />
             <ReferenceStyleInput />
             <ElementNestingLevel />
           </Box>
