@@ -31,6 +31,10 @@ export default function App() {
                 name = 'family';
               }else if(name == 'label'){
                 name = 'r-label';
+              }else if(name == 'date-in-citation'){
+                name = 'date-parts';
+              }else if(name == 'pages'){
+                name = 'page';
               }
               return `${name}{background-color: ${refEl.color}}`
             })}</style>
