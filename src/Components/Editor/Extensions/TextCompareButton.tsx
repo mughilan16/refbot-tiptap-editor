@@ -3,24 +3,16 @@ import React, { useState } from 'react'
 import { LoadingButton } from '@mui/lab';
 
 import { useMainTab } from '../../../hooks/zustand/useMainTab';
-import axiosLaravel from '../../../utils/axiosLaravel';
+import axiosLaravel, { apiURL } from '../../../utils/axiosLaravel';
 import { useSnackbar } from 'notistack';
+import { replaceSlashIntoPlus } from '../../../utils/string/replaceSlashIntoPlus';
 
 const TextCompareButton = () => {
-
-  const dispatch = useMainTab(state => state.dispatch);
+  
   const [state, setState] = useState({ isLoading: false });
   const { enqueueSnackbar } = useSnackbar();
 
   const onClickHandler = async () => {
-
-    await dispatch({
-      type: 'Functon', set(state) {
-        state.refVisibility.annotation = true;
-        state.refVisibility.input = true;
-        state.refVisibility.output = true;
-      },
-    })
 
     let references = [...document.querySelectorAll(`[data-index]`)].map(refEl => {
       let inputText = refEl.querySelector(`[data-label="Input"]`)?.textContent || ''
@@ -31,6 +23,7 @@ const TextCompareButton = () => {
     setState(pre => ({ ...pre, isLoading: true }));
     axiosLaravel.post('/ref-bot-to-word', { references: JSON.stringify(references) })
       .then(res => {
+        // window.open(`${apiURL}/file-download/${replaceSlashIntoPlus(res.data.data.path)}`, '_blank')
         enqueueSnackbar({
           message: 'Success',
           variant: 'success',

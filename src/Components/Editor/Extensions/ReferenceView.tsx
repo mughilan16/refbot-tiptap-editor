@@ -69,6 +69,9 @@ const CustomCard = styled(Card)(({ theme }) => ({
         padding: '15px !important',
         fontFamily: 'monospace',
     },
+    '& .MuiCardContent-root[data-show="false"]': {
+        display: 'none',
+    },
 
     '& .MuiCardContent-root:before': {
         color: grey[400],
@@ -132,16 +135,16 @@ const ReferenceView = (props: ReferenceViewProps) => {
     return (
         <NodeViewWrapper className="react-component">
             <CustomCard data-index={index} data-label={props.node.attrs.type}>
-                {refVisibility.input && <CardContent data-label="Input">
+                <CardContent data-show={refVisibility.input} data-label="Input">
                     {props.node.attrs.input}
                     <CopyToClipboardButton
                         toCopy={props.node.attrs.input}
                     />
-                </CardContent>}
-                {refVisibility.annotation && <CardContent data-label="Annotation">
+                </CardContent>
+                <CardContent data-show={refVisibility.annotation} data-label="Annotation">
                     <NodeViewContent className="content" />
-                </CardContent>}
-                {refVisibility.output && <CardContent data-label="Output">
+                </CardContent>
+                <CardContent data-show={refVisibility.output} data-label="Output">
                     <div id='output-container' dangerouslySetInnerHTML={{
                         __html: output
                     }}></div>
@@ -152,7 +155,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
                             return el?.textContent?.trim() || ''
                         }}
                     />
-                </CardContent>}
+                </CardContent>
             </CustomCard>
         </NodeViewWrapper>
     )
