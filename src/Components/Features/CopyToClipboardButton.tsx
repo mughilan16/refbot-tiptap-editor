@@ -1,9 +1,10 @@
+import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { IconButton, IconButtonProps, Tooltip } from '@mui/material';
-import CancelIcon from '@mui/icons-material/Cancel';
+import { IconButton, IconButtonProps } from '@mui/material';
 import { useState } from 'react';
-import WpsTooltip from './WpsTooltip';
+import copy from 'copy-text-to-clipboard';
+
 
 type CopyToClipboardButtonProps = {
     toCopy: string | (() => string),
@@ -32,7 +33,8 @@ const CopyToClipboardButton = ({ toCopy, ...rest }: CopyToClipboardButtonProps) 
             text = toCopy;
         }
         try {
-            await navigator.clipboard.writeText(text);
+
+            await copy(text);
             setState(pre => ({ ...pre, icon: 'tick' }))
         } catch (error) {
             setState(pre => ({ ...pre, icon: 'wrong' }))
