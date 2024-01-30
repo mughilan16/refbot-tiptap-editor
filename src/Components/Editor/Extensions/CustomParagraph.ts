@@ -41,6 +41,8 @@ export const CustomParagraph = Paragraph.extend({
         return ['p', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
     },
 
+    draggable: true,
+
     addNodeView() {
         return ReactNodeViewRenderer(ReferenceView)
     },

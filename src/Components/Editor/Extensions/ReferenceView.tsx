@@ -1,15 +1,13 @@
-import { Card, CardActionArea, CardActions, CardContent, Divider, Paper, TextField, styled } from '@mui/material';
-import { Editor, NodeViewContent, NodeViewWrapper } from '@tiptap/react'
-import React, { useEffect, useState } from 'react'
-import { elementToJson } from '../../RefBotPage/OutputTab/xmlToJsonInputForCite';
+import { Card, CardContent, styled } from '@mui/material';
 import { green, grey, indigo } from '@mui/material/colors';
-import { useMainTab } from '../../../hooks/zustand/useMainTab';
-import { useFormContext } from 'react-hook-form';
 import { Node } from '@tiptap/pm/model';
-import safeHtmlFormatter from '../../../utils/safeHtmlFormatter';
-import { useRichTextEditorContext } from 'mui-tiptap';
-import { FormFields } from '../../RefBotPage/RefInputDialog/RefInputDialog';
+import { Editor, NodeViewContent, NodeViewWrapper } from '@tiptap/react';
+import { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { useMainTab } from '../../../hooks/zustand/useMainTab';
 import CopyToClipboardButton from '../../Features/CopyToClipboardButton';
+import { elementToJson } from '../../RefBotPage/OutputTab/xmlToJsonInputForCite';
+import { FormFields } from '../../RefBotPage/RefInputDialog/RefInputDialog';
 
 
 const CustomCard = styled(Card)(({ theme }) => ({
@@ -51,16 +49,16 @@ const CustomCard = styled(Card)(({ theme }) => ({
     '& .MuiCardContent-root[data-label="Input"]': {
         backgroundColor: `${grey[200]} !important`,
     },
-    '& .MuiCardContent-root[data-label="Output"]': {
+    '& .MuiCardContent-root[data-label="Output"], & .MuiCardContent-root[data-label="Input"]': {
         backgroundColor: `${grey[200]} !important`,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    '& .MuiCardContent-root[data-label="Output"] [data-testid="ContentCopyIcon"]': {
+    '& .MuiCardContent-root [data-testid="ContentCopyIcon"]': {
         visibility: 'hidden',
     },
-    '& .MuiCardContent-root[data-label="Output"]:hover [data-testid="ContentCopyIcon"]': {
+    '& .MuiCardContent-root:hover [data-testid="ContentCopyIcon"]': {
         visibility: 'visible',
     },
     '& .MuiCardContent-root[data-label="Output"]:hover .MuiIconButton-root': {
@@ -136,6 +134,9 @@ const ReferenceView = (props: ReferenceViewProps) => {
             <CustomCard data-index={index} data-label={props.node.attrs.type}>
                 {refVisibility.input && <CardContent data-label="Input">
                     {props.node.attrs.input}
+                    <CopyToClipboardButton
+                        toCopy={props.node.attrs.input}
+                    />
                 </CardContent>}
                 {refVisibility.annotation && <CardContent data-label="Annotation">
                     <NodeViewContent className="content" />
