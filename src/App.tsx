@@ -1,31 +1,47 @@
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import {
-  AppBar,
-  Box,
-  CssBaseline,
-  IconButton,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-  createTheme,
-  useMediaQuery,
-  type PaletteMode,
+  CssBaseline
 } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
-import Navbar from "./Components/Layout/Navbar";
-import MuiThemeProvider from "./Components/Providers/MuiThemeProvider/MuiThemeProvider";
-import RefBotPage from "./Components/RefBotPage/View";
+import { FormProvider, useForm } from "react-hook-form";
 import MuiSnakbarProvider from "./Components/Providers/MuiSnakbarProvider";
+import MuiThemeProvider from "./Components/Providers/MuiThemeProvider/MuiThemeProvider";
+import RefbotEditor from "./Components/RefBotPage/ChangesTab/RefbotEditor";
+import RefbotEditorProvider from "./Components/RefBotPage/ChangesTab/RefbotEditorProvider";
+import { FormFields } from "./Components/RefBotPage/RefInputDialog/RefInputDialog";
+import { citationText } from "./utils/faker/citaitonText";
+import referenceElements from "./utils/faker/referenceElements";
 
 export default function App() {
+
+  const methods = useForm<FormFields>({
+    defaultValues: {
+      content: citationText
+    },
+  });
+
 
   return (
     <MuiThemeProvider>
       <CssBaseline />
       <MuiSnakbarProvider>
-        <RefBotPage />
+        <FormProvider {...methods}>
+          <RefbotEditorProvider>
+            <style>{referenceElements.map(refEl => {
+              let name = refEl.name;
+              if(name == 'surname'){
+                name = 'family';
+              }else if(name == 'label'){
+                name = 'r-label';
+              }else if(name == 'date-in-citation'){
+                name = 'date-parts';
+              }else if(name == 'pages'){
+                name = 'page';
+              }
+              return `${name}{background-color: ${refEl.color}}`
+            })}</style>
+            <RefbotEditor />
+          </RefbotEditorProvider>
+        </FormProvider>
       </MuiSnakbarProvider>
-    </MuiThemeProvider>
+    </MuiThemeProvider >
   );
 }

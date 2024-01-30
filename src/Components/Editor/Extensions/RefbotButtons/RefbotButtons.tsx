@@ -1,10 +1,12 @@
 import { Button, styled } from '@mui/material';
 import { useRichTextEditorContext } from 'mui-tiptap';
+import { useMainTab } from '../../../../hooks/zustand/useMainTab';
 import referenceElements from '../../../../utils/faker/referenceElements';
 
-const CustomButton = styled(Button)({
+const CustomButton = styled(Button)(({theme}) => ({
     padding: `2px 4px`,
-});
+    boxShadow: theme.shadows[0]
+}));
 
 const refTags = referenceElements.map(refEl => refEl.name).filter(i => !['author'].includes(i));
 
@@ -36,8 +38,10 @@ const RefbotButtons = () => {
         })
     }
 
+
+
     return (
-        <>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '5px' }}>
             {/* {data?.data.referenceStyles.map(item => ( */}
             {referenceElements.map((item, index) => (
                 <CustomButton size="small"
@@ -47,7 +51,8 @@ const RefbotButtons = () => {
                     style={{ backgroundColor: item.color }}
                 >{item.name}</CustomButton>
             ))}
-        </>
+           
+        </div>
     )
 }
 

@@ -1,8 +1,10 @@
 import {
+    Attributes,
     Mark,
     mergeAttributes
 } from '@tiptap/core'
 import referenceElements from '../../../utils/faker/referenceElements'
+import { Attribute } from '@tiptap/core'
 
 export interface RefbotMarkOptions {
     HTMLAttributes: Record<string, any>,
@@ -40,23 +42,26 @@ export const RefbotMark = ({ name, tag, color }: { name: string, tag: string, co
     },
 
     addAttributes() {
-        return {
-            color: {
-                default: color,
-                // parseHTML: element => element.getAttribute('data-color') || element.style.backgroundColor,
-                renderHTML: attributes => {
-                    const attrs: Record<string, any> = {};
-                    if (name == 'author') {
-                        attrs.key = Math.ceil(Math.random() * 100);
-                    }
-                    return {
-                        style: `background-color: ${color}; color: inherit`,
-                        tag: 'ref-bot',
-                        ...attrs,
-                    }
-                },
+        const attrs: Attributes = {};
+        attrs["color"] = {
+            default: color,
+            // parseHTML: element => element.getAttribute('data-color') || element.style.backgroundColor,
+            renderHTML: attributes => {
+                return {
+                    style: `background-color: ${color}; color: inherit`,
+                    tag: 'ref-bot',
+                }
             },
+            keepOnSplit: false,
         }
+        if (name == 'author') {
+            attrs["index"] = {
+                default: color,
+                parseHTML: element => element.getAttribute('index'),
+                keepOnSplit: true,
+            }
+        }
+        return attrs
     },
 
     parseHTML() {

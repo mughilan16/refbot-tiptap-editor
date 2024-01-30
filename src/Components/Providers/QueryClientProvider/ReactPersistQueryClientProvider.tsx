@@ -23,7 +23,7 @@ const ReactPersistQueryClientProvider = ({ children }: { children: React.ReactNo
     return (
         <PersistQueryClientProvider persistOptions={{ persister }} client={queryClient}>
             {children}
-            <ReactQueryDevtools position='right' initialIsOpen={false} />
+            {/* <ReactQueryDevtools position='right' initialIsOpen={false} /> */}
         </PersistQueryClientProvider>
     )
 }

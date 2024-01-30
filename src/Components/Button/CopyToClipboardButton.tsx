@@ -1,14 +1,12 @@
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { IconButton, IconButtonProps } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import { useState } from 'react';
-import copy from 'copy-text-to-clipboard';
-
 
 type CopyToClipboardButtonProps = {
     toCopy: string | (() => string),
-} & IconButtonProps
+}
 
 type CopyState = { icon: 'copy' | 'tick' | 'wrong' }
 
@@ -19,7 +17,7 @@ const Icons: Record<CopyState['icon'], React.ReactElement> = {
 }
 
 
-const CopyToClipboardButton = ({ toCopy, ...rest }: CopyToClipboardButtonProps) => {
+const CopyToClipboardButton = ({ toCopy }: CopyToClipboardButtonProps) => {
 
     const [state, setState] = useState<CopyState>({
         icon: 'copy',
@@ -33,7 +31,7 @@ const CopyToClipboardButton = ({ toCopy, ...rest }: CopyToClipboardButtonProps) 
             text = toCopy;
         }
         try {
-            await copy(text);
+            await navigator.clipboard.writeText(text);
             setState(pre => ({ ...pre, icon: 'tick' }))
         } catch (error) {
             setState(pre => ({ ...pre, icon: 'wrong' }))
@@ -45,12 +43,16 @@ const CopyToClipboardButton = ({ toCopy, ...rest }: CopyToClipboardButtonProps) 
     }
 
     return (
-        <IconButton
-            {...rest}
-            onClick={onClickHandler}
+        <Tooltip
+            placement='top'
+            title="Copy"
         >
-            {Icons[state.icon]}
-        </IconButton>
+            <IconButton
+                onClick={onClickHandler}
+            >
+                {Icons[state.icon]}
+            </IconButton>
+        </Tooltip>
     )
 }
 

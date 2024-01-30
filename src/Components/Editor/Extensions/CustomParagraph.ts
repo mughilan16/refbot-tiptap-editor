@@ -1,6 +1,10 @@
 import { mergeAttributes } from "@tiptap/core";
 import Paragraph from "@tiptap/extension-paragraph";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import ReferenceView from "./ReferenceView";
+import { generateRandomNumber } from "../../../utils/generateRandomNumber";
 // import { removeEmptyAttributes } from "../Services/attributes";
+
 
 
 export const CustomParagraph = Paragraph.extend({
@@ -11,7 +15,7 @@ export const CustomParagraph = Paragraph.extend({
             },
             {
                 tag: 'ref',
-            }
+            },
         ];
     },
     addAttributes() {
@@ -22,11 +26,27 @@ export const CustomParagraph = Paragraph.extend({
                     return node.getAttribute('type');
                 },
             },
+            input: {
+                default: '',
+            },
+            output: {
+                default: '',
+            },
+            index: {
+                default: generateRandomNumber(1, 1000),
+            },
         };
     },
     renderHTML({ node, HTMLAttributes }) {
         return ['p', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
     },
+
+    draggable: true,
+
+    addNodeView() {
+        return ReactNodeViewRenderer(ReferenceView)
+    },
+
 })
 
 // ref tyeps
