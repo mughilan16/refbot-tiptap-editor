@@ -35,6 +35,8 @@ export default function App() {
                 name = 'date-parts';
               }else if(name == 'pages'){
                 name = 'page';
+              }else if(name == 'title'){
+                name = 'r-title'
               }
               return `${name}{background-color: ${refEl.color}}`
             })}</style>

@@ -15,14 +15,12 @@ const pareser = (xml: string) => {
     </html>`
     const doc = parse.parseFromString(xml, 'text/html')
     const textEls = [...doc.body.querySelectorAll('text')]
-    console.log(textEls);
     for (const textEl of textEls) {
         const prefix = textEl.getAttribute('prefix') || '';
         const suffix = textEl.getAttribute('suffix') || '';
         textEl.setAttribute('prefix', `surya${prefix}`);
         textEl.setAttribute('suffix', `${suffix}surya`);
-        console.log(textEl.getAttribute('suffix'));
-        
+
     }
 
 }
@@ -46,7 +44,8 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     const collectValue = ({ tagName, key }: { tagName: string, key: keyof Omit<ReferenceInput, 'author' | 'issued' | 'editor' | 'translator'> }) => {
         const tag = el.querySelector(`r-${tagName}`);
         if (tag) {
-            res[key] = tag.innerHTML;
+            console.log(key, tag.textContent);
+            res[key] = tag.textContent || '';
         }
     }
 
@@ -62,6 +61,7 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     collectValue({ key: 'publisher-place', tagName: 'publisher-loc' });
     // collectValue({ key: 'organizer', tagName: 'collab' });
     collectValue({ key: 'page', tagName: 'pages' });
+    collectValue({ key: 'title', tagName: 'title' });
     collectValue({ key: 'edition', tagName: 'edition' });
 
     // const issued = el.querySelector(`q-issued`);
@@ -118,8 +118,8 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     res['publisher-place'] = 'original-place';
 
     const citation = new Cite(res);
-    const out = citation.format('bibliography', { format: 'text', template });
-    console.log({ res, out });
+    let out: string = citation.format('bibliography', { format: 'text', template });
+    out = out.replaceAll('title', 'r-title')
     return { res, out };
 }
 
