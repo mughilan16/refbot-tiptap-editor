@@ -1,10 +1,8 @@
-import { Button } from '@mui/material'
-import React, { useState } from 'react'
 import { LoadingButton } from '@mui/lab';
+import { useState } from 'react';
 
-import { useMainTab } from '../../../hooks/zustand/useMainTab';
-import axiosLaravel, { apiURL } from '../../../utils/axiosLaravel';
 import { useSnackbar } from 'notistack';
+import axiosLaravel, { apiURL } from '../../../utils/axiosLaravel';
 import { replaceSlashIntoPlus } from '../../../utils/string/replaceSlashIntoPlus';
 
 const TextCompareButton = () => {
@@ -17,16 +15,17 @@ const TextCompareButton = () => {
     let references = [...document.querySelectorAll(`[data-index]`)].map(refEl => {
       let inputText = refEl.querySelector(`[data-label="Input"]`)?.textContent || ''
       let convertedXml = refEl.querySelector(`[data-label="Output"] #output-container`)?.innerHTML || ''
-      let annotationXml = refEl.querySelector(`[data-label="Annotation"]`)?.innerHTML || ''
-      return { inputText, convertedXml, annotationXml };
+      // let annotationXml = refEl.querySelector(`[data-label="Annotation"]`)?.innerHTML || ''
+      return { inputText, convertedXml };
     })
     setState(pre => ({ ...pre, isLoading: true }));
-    axiosLaravel.post('/ref-bot-to-word', { references: JSON.stringify(references) })
+    axiosLaravel.post('/ref-bot-to-word', { references })
       .then(res => {
-        // window.open(`${apiURL}/file-download/${replaceSlashIntoPlus(res.data.data.path)}`, '_blank')
+        window.open(`${apiURL}/file-download/${replaceSlashIntoPlus(res.data.data.outputFile)}`, '_blank')
         enqueueSnackbar({
           message: 'Success',
           variant: 'success',
+          
         });
         console.log(res);
       }).catch(err => {

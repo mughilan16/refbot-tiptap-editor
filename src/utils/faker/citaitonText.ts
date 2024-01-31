@@ -1,5 +1,4 @@
-export const citationText = `
-1. Centuri&#x00F3;n, D., Cobos-Puc, L.E., Ram&#x00ED;rez-Rosas, M.B., G&#x00F3;mez-D&#x00ED;az, B., S&#x00E1;nchez-L&#x00F3;pez, A., and Villal&#x00F3;n, C.M. (2009). Pithed rat model for searching vasoactive drugs and studying the modulation of the sympathetic and non- adrenergic non-cholinergic outflow. In: Rocha, L., and Granados-Soto, V. (eds). Models in Neuropharmacology. Kerala, India: Transworld Research Network., pps. 91&#x2013;97.
+export const citationText = `1. Centuri&#x00F3;n, D., Cobos-Puc, L.E., Ram&#x00ED;rez-Rosas, M.B., G&#x00F3;mez-D&#x00ED;az, B., S&#x00E1;nchez-L&#x00F3;pez, A., and Villal&#x00F3;n, C.M. (2009). Pithed rat model for searching vasoactive drugs and studying the modulation of the sympathetic and non- adrenergic non-cholinergic outflow. In: Rocha, L., and Granados-Soto, V. (eds). Models in Neuropharmacology. Kerala, India: Transworld Research Network., pps. 91&#x2013;97.
 2. Kimura, H. (2012). Physiological and pathophysiological functions of hydrogen sulfide. In: Hermann, A., Sitdikova, G.F., and Weiger, T.M. (eds). Gasotransmitters: Physiology and Pathophysiology. Berlin: Springer, pps. 71&#x2013;98.
 3. Davis, G.A., Makdissi, M., Harcourt, P., Clifton, P., and McCrory, P. (2017). The Management of Concussion in Australian Football with Specific Provisions for Children Aged 5&#x2013;17 Years. Australian Football League: Melbourne, Victoria, Australia.
 4. Eagan, K., Stolzenberg, E.B., Ramirez, J.J., Aragon, M.C., Suchard, M.R., and Hurtado, S. (2014). The American Freshman: National Norms Fall 2014. Higher Education Research Institute, UCLA: Los Angeles, CA.
@@ -8,20 +7,11 @@ export const citationText = `
 7. Schurlock, J., and Andersen, B.R, Diagnoses in Assyrian and Babylonian Medicine: Ancient Sources, Translations, and Medical Analyses. Champaign, IL: University of Illinois Press; 2005.
 8. Sheslow, D., and Adams, W. (2003). Wide Range Assessment of Memory and Learning (WRAML). NCS Pearson: Bloomington, MN.
 9. Delis, D.C. (1994). CVLT-C: California Verbal Learning Test. The Psychological Corporation, Harcourt Brace Corporation: New York.
-10. Hosmer, D.W., Lemeshow, S., and Sturdivant, R.X. (2013). Applied Logistic Regression.Vol. 398. John Wiley &#x0026; Sons: Hoboken, NJ.
 11. Dancey, C.P., and Reidy, J. (2007). Statistics Without Maths for Psychology. Pearson Education: London.
-12. American Psychiatric Association (2013). Diagnostic and Statistical Manual of Mental Disorders. 5th ed. American Psychiatric Association: Washington, D.C.
-13. Harrell, F.E. General aspects of fitting regression models. In: Regression Modeling Strategies. Springer Series in Statistics. Cham, Switzerland: Springer, 2015, pp. 13&#x2013;44.
-14. R Core Team (2018). R: A language and environment for statistical computing. R Foundation for Statistical Computing. Vienna, Austria.
-15. Centers for Disease Control and Prevention. Report to Congress: The Management of TBI in Children. Atlanta, GA: National Center for Injury Prevention and Control; Division of Unintentional Injury Prevention: 2018.
-16. Dillman, D.A. Mail and Internet Surveys: The Tailored Design Method&#x2014;2007 Update with New Internet, Visual, and Mixed-Mode Guide. Hoboken, NJ: John Wiley &#x0026; Sons: 2011.
-17. The Management of Concussion/mTBI Working Group (2016). VA/DoD clinical practice guideline for the management of concussion/mild traumatic brain injury (mTBI): Guideline summary. Washington, DC: Department of Veterans Affairs, Department of Defense.
-18. Weathers, F.W., Huska, J.A., and Keane, T.M. (1991). PCL-M for DSM-IV. National Center for PTSD: Boston, MA.
-20. National Federation of State High School Association. (2015) NFHS Handbook 2015-2016. NFHS: Indianapolis, IN.
-21. Statistics Korea. Statistics on the Cause of Death in Koreans in 2020. Statistics Korea; Daejeon, Republic of Korea; 2021.
-22. National Academies of Sciences, Engineering, and Medicine (2019), Reproducibility and Replicability in Science. National Academies Press: Washington, D.C.
-23. National Reseach Council of the National Academies. (2011). Guide for the Care and Use of Laboratory Animals, 8th ed. Washington, DC: The National Academies Press.
-`
+12. Hosmer, D.W., Lemeshow, S., and Sturdivant, R.X. (2013). Applied Logistic Regression.Vol. 398. John Wiley &#x0026; Sons: Hoboken, NJ.
+13. R Core Team (2018). R: A language and environment for statistical computing. R Foundation for Statistical Computing. Vienna, Austria.
+14. Dillman, D.A. Mail and Internet Surveys: The Tailored Design Method&#x2014;2007 Update with New Internet, Visual, and Mixed-Mode Guide. Hoboken, NJ: John Wiley &#x0026; Sons: 2011.
+15. Weathers, F.W., Huska, J.A., and Keane, T.M. (1991). PCL-M for DSM-IV. National Center for PTSD: Boston, MA.`
 
 // Bonilla-Silva, Eduardo. 1997. &#x201C;Rethinking Racism: Toward a Structural Interpretation.&#x201D; American Sociological Review 62, 3: 465&#x2013;80.
 // Carpenter, Daniel. 2012. &#x201C;Is Health Politics Different&#x003F;&#x201D; Annual Review of Political Science 15: 287&#x2013;311.
