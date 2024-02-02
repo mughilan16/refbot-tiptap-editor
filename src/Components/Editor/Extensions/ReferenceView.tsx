@@ -1,5 +1,5 @@
 import { Box, Card, CardActions, CardContent, Checkbox, Typography, styled } from '@mui/material';
-import { green, grey, indigo } from '@mui/material/colors';
+import { green, grey, indigo, red } from '@mui/material/colors';
 import { Node } from '@tiptap/pm/model';
 import { Editor, NodeViewContent, NodeViewWrapper } from '@tiptap/react';
 import { useEffect, useState } from 'react';
@@ -24,13 +24,19 @@ const CustomCard = styled(Card)(({ theme }) => ({
     position: 'relative',
     marginBottom: `30px`,
     boxShadow: theme.shadows['2'],
-    // borderLeft: `4px solid ${primary[500]} !important`,
+    borderLeft: `4px solid ${grey[600]} !important`,
     zIndex: 100,
     display: 'flex',
     '&:hover': {
         border: `1px solid ${theme.palette.grey[400]} !important`,
-        // borderLeft: `4px solid ${primary[600]} !important`,
+        borderLeft: `4px solid ${grey[600]} !important`,
         boxShadow: theme.shadows['2'],
+    },
+    "&:has([data-testid='ThumbUpAltIcon'])": {
+        borderLeft: `4px solid ${green[500]} !important`,
+    },
+    "&:has([data-testid='ThumbDownAltIcon'])": {
+        borderLeft: `4px solid ${red[500]} !important`,
     },
     "& .MuiDivider-root": {
         borderColor: `${theme.palette.grey[300]} !important`,
@@ -47,7 +53,7 @@ const CustomCard = styled(Card)(({ theme }) => ({
         position: 'absolute',
         top: '0px',
         fontWeight: 800,
-        left: '0px',
+        right: '0px',
         zIndex: 101,
     },
     "&:hover .MuiCardContent-root:before": {
@@ -97,7 +103,7 @@ const CustomCard = styled(Card)(({ theme }) => ({
         position: 'absolute',
         top: '0px',
         fontWeight: 800,
-        left: '0px',
+        right: '0px',
         transition: `opacity .2s ease-in-out`,
         zIndex: 0,
     },
@@ -109,6 +115,7 @@ const CustomCard = styled(Card)(({ theme }) => ({
         justifyContent: 'center',
         padding: '8px 11px',
         gap: '5px',
+        // backgroundColor: grey[50],
     },
 
     "& .MuiCardActions-root .MuiButtonBase-root": {
@@ -165,7 +172,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
     }, [props.node.textContent, style]);
 
     const likeStatus = props.node.attrs.likeStatus;
-    
+
 
     return (
         <NodeViewWrapper className="react-component">
@@ -178,7 +185,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
                         icon={<ThumbUpOffAltIcon />}
                         checkedIcon={<ThumbUpAltIcon />}
                         onChange={likeChangeHandler}
-                        />
+                    />
                     <Checkbox
                         color='error'
                         value={'DisLike'}

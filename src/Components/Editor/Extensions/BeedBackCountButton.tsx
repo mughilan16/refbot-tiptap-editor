@@ -29,7 +29,11 @@ const StyledStack = styled(Stack)(({ theme }) => ({
         gap: '4px',
         padding: '0px 4px',
         borderRadius: '2px',
+        minWidth: '50px',
     },
+    "& .MuiSvgIcon-root":{
+        fontSize: '18px',
+    }
 }));
 
 const BeedBackCountButton = () => {
@@ -40,15 +44,15 @@ const BeedBackCountButton = () => {
         <StyledStack>
             <Box>
                 <FormatListBulletedIcon />
-                <Typography variant='h6'>{feedBack.Total}</Typography>
+                <Typography variant='subtitle2'>{feedBack.Total}</Typography>
             </Box>
             <Box>
                 <ThumbUpAltIcon />
-                <Typography variant='h6'>{feedBack.Like}</Typography>
+                <Typography variant='subtitle2'>{feedBack.Like}</Typography>
             </Box>
             <Box>
                 <ThumbDownAltIcon />
-                <Typography variant='h6'>{feedBack.DisLike}</Typography>
+                <Typography variant='subtitle2'>{feedBack.DisLike}</Typography>
             </Box>
         </StyledStack>
     )
