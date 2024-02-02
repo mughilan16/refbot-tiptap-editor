@@ -1,4 +1,5 @@
 import { Box, Paper, useTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import {
   MenuButtonBold,
   MenuButtonHighlightColor,
@@ -16,11 +17,11 @@ import {
 } from "mui-tiptap";
 import RefbotButtons from "../../Editor/Extensions/RefbotButtons/RefbotButtons";
 import RefbotTabButtons from "../../Editor/Extensions/RefbotTabButtons";
-import RefInputDialog from "../RefInputDialog/RefInputDialog";
-import { grey } from "@mui/material/colors";
-import ReferenceStyleInput from "../OutputTab/ReferenceStyleInput";
-import ElementNestingLevel from "../ElementNestingLevel";
 import TextCompareButton from "../../Editor/Extensions/TextCompareButton";
+import ElementNestingLevel from "../ElementNestingLevel";
+import ReferenceStyleInput from "../OutputTab/ReferenceStyleInput";
+import RefInputDialog from "../RefInputDialog/RefInputDialog";
+import BeedBackCountButton from "../../Editor/Extensions/BeedBackCountButton";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -99,6 +100,7 @@ export default function EditorMenuControls() {
             <RefbotTabButtons />
             <TextCompareButton />
             <ReferenceStyleInput />
+            <BeedBackCountButton />
             <ElementNestingLevel />
           </Box>
 

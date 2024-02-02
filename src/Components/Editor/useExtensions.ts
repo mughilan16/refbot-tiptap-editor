@@ -18,7 +18,6 @@ import { Link } from "@tiptap/extension-link";
 import { ListItem } from "@tiptap/extension-list-item";
 import { Mention } from "@tiptap/extension-mention";
 import { OrderedList } from "@tiptap/extension-ordered-list";
-import { Paragraph } from "@tiptap/extension-paragraph";
 import { Placeholder } from "@tiptap/extension-placeholder";
 import { Strike } from "@tiptap/extension-strike";
 import { Subscript } from "@tiptap/extension-subscript";
@@ -32,7 +31,6 @@ import { Text } from "@tiptap/extension-text";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Underline } from "@tiptap/extension-underline";
-import { useMemo } from "react";
 import {
   FontSize,
   HeadingWithAnchor,
@@ -40,10 +38,12 @@ import {
   ResizableImage,
   TableImproved,
 } from "mui-tiptap";
-import { mentionSuggestionOptions } from "./mentionSuggestionOptions";
+import { useMemo } from "react";
 import { CustomParagraph } from "./Extensions/CustomParagraph";
+import { FeedBackCountExtension } from "./Extensions/FeedBackCountExtension";
 import { HoverEventPlugin } from "./Extensions/HoverEventPlugin";
 import { AllRefbotMarks } from "./Extensions/RefbotMark";
+import { mentionSuggestionOptions } from "./mentionSuggestionOptions";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -189,6 +189,7 @@ export default function useExtensions({
       // We use the regular `History` (undo/redo) extension when not using
       // collaborative editing
       History,
+      FeedBackCountExtension,
     ];
   }, [placeholder]);
 }

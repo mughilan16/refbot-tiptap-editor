@@ -17,7 +17,6 @@ export const HoverEventPlugin = Extension.create({
                     traverseRefbotTags(parentElement, tags);
                 }
             }
-
         }
 
         return [

@@ -15,6 +15,12 @@ export type MainTabState = {
         hoverElements: string[],
     }
     inputDailogShow: boolean,
+    feedBack: {
+        Like: number,
+        DisLike: number,
+        None: number,
+        Total: number,
+    }
 }
 
 type Action = {
@@ -28,7 +34,7 @@ type Action = {
         show: boolean,
     }
 } | {
-    type: "Functon",
+    type: "Function",
     set: (state: MainTabState) => void
 }
 
@@ -42,7 +48,7 @@ const reducer = (state: MainTabState, aciton: Action) => {
             state.inputDailogShow = aciton.payload.show;
             break;
         }
-        case "Functon": {
+        case "Function": {
             aciton.set(state);
         }
     }
@@ -62,5 +68,11 @@ export const useMainTab = create<MainTabState>()(
             hoverElements: [],
         },
         inputDailogShow: false,
+        feedBack: {
+            DisLike: 0,
+            Like: 0,
+            None: 0,
+            Total: 0,
+        },
     })),
 )

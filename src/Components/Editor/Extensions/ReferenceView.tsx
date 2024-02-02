@@ -154,10 +154,9 @@ const ReferenceView = (props: ReferenceViewProps) => {
         // props.editor.commands.updateAttributes('paragraph', { value: output, format: 'NormalToSafe' })
 
     }
-
     const likeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         props.updateAttributes({
-            isLiked: e.target.value,
+            likeStatus: e.target.value,
         })
     }
 
@@ -165,7 +164,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
         updateCitation();
     }, [props.node.textContent, style]);
 
-    const isLiked = props.node.attrs.isLiked;
+    const likeStatus = props.node.attrs.likeStatus;
     
 
     return (
@@ -174,7 +173,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
                 <CardActions>
                     <Checkbox
                         value={'Like'}
-                        checked={isLiked == "Like"}
+                        checked={likeStatus == "Like"}
                         color='success'
                         icon={<ThumbUpOffAltIcon />}
                         checkedIcon={<ThumbUpAltIcon />}
@@ -183,7 +182,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
                     <Checkbox
                         color='error'
                         value={'DisLike'}
-                        checked={isLiked == "DisLike"}
+                        checked={likeStatus == "DisLike"}
                         icon={<ThumbDownOffAltIcon />}
                         checkedIcon={<ThumbDownAltIcon />}
                         onChange={likeChangeHandler}

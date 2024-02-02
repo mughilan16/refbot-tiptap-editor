@@ -26,39 +26,42 @@ const RefbotTabButtons = () => {
 
     return (
         <>
-            {/* <ButtonGroup variant="outlined" aria-label="outlined button group">
-                <Button onClick={() => dispatch({
-                    type: 'Functon', set(state) {
-                        state.refVisibility.input = !refVisibility.input;
-                    },
-                })} variant={refVisibility.input ? 'contained' : 'outlined'} size='small'>Input</Button>
-                <Button onClick={() => dispatch({
-                    type: 'Functon', set(state) {
-                        state.refVisibility.annotation = !refVisibility.annotation;
-                    },
-                })} variant={refVisibility.annotation ? 'contained' : 'outlined'} size='small'>Annotation</Button>
-                <Button onClick={() => dispatch({
-                    type: 'Functon', set(state) {
-                        state.refVisibility.output = !refVisibility.output;
-                    },
-                })} variant={refVisibility.output ? 'contained' : 'outlined'} size='small'>Output</Button>
-            </ButtonGroup> */}
+            {true ?
+                <ButtonGroup variant="outlined" aria-label="outlined button group">
+                    <Button onClick={() => dispatch({
+                        type: 'Function', set(state) {
+                            state.refVisibility.input = !refVisibility.input;
+                        },
+                    })} variant={refVisibility.input ? 'contained' : 'outlined'} size='small'>Input</Button>
+                    <Button onClick={() => dispatch({
+                        type: 'Function', set(state) {
+                            state.refVisibility.annotation = !refVisibility.annotation;
+                        },
+                    })} variant={refVisibility.annotation ? 'contained' : 'outlined'} size='small'>Annotation</Button>
+                    <Button onClick={() => dispatch({
+                        type: 'Function', set(state) {
+                            state.refVisibility.output = !refVisibility.output;
+                        },
+                    })} variant={refVisibility.output ? 'contained' : 'outlined'} size='small'>Output</Button>
+                </ButtonGroup>
+                :
+                <FormGroup sx={{ display: 'flex', flexDirection: 'row' }}>
+                    {checks.map((check, index) => (
+                        <FormControlLabel
+                            key={index}
+                            onChange={() => dispatch({
+                                type: 'Function', set(state) {
+                                    state.refVisibility[check.key] = !refVisibility[check.key];
+                                },
+                            })}
+                            checked={refVisibility[check.key]}
+                            control={<Checkbox size='small' />}
+                            label={check.label}
+                        />
+                    ))}
+                </FormGroup>
+            }
 
-            <FormGroup sx={{ display: 'flex', flexDirection: 'row' }}>
-                {checks.map((check, index) => (
-                    <FormControlLabel
-                        key={index}
-                        onChange={() => dispatch({
-                            type: 'Functon', set(state) {
-                                state.refVisibility[check.key] = !refVisibility[check.key];
-                            },
-                        })}
-                        checked={refVisibility[check.key]}
-                        control={<Checkbox size='small'/>}
-                        label={check.label}
-                    />
-                ))}
-            </FormGroup>
         </>
     )
 }
