@@ -35,6 +35,9 @@ export const CustomParagraph = Paragraph.extend({
             index: {
                 default: generateRandomNumber(1, 1000),
             },
+            isLiked: {
+                default: 'None',
+            },
         };
     },
     renderHTML({ node, HTMLAttributes }) {

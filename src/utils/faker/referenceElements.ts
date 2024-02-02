@@ -124,7 +124,7 @@ const referenceElements: {
             "id": 6,
             "index": 6,
             "name": "publisher-loc",
-            "color": "#dbe06b",
+            "color": "#009ea0",
             "created_at": "2022-07-07T07:45:32.000000Z",
             "updated_at": "2023-04-19T23:07:33.000000Z",
             "is_active": 1,

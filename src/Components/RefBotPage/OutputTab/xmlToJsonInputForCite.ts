@@ -5,30 +5,9 @@ import { cslTemplated } from '../cslTemplates';
 // require("citation-js/plugin-ris");
 
 
-const pareser = (xml: string) => {
-    const parse = new DOMParser();
-    xml = `
-    <html lang="en">
-    <body>
-        ${xml}
-    </body>
-    </html>`
-    const doc = parse.parseFromString(xml, 'text/html')
-    const textEls = [...doc.body.querySelectorAll('text')]
-    for (const textEl of textEls) {
-        const prefix = textEl.getAttribute('prefix') || '';
-        const suffix = textEl.getAttribute('suffix') || '';
-        textEl.setAttribute('prefix', `surya${prefix}`);
-        textEl.setAttribute('suffix', `${suffix}surya`);
-
-    }
-
-}
-
 let config = Cite.plugins.config.get('@csl')
 cslTemplated.map(template => {
     config.templates.add(template.key, template.csl);
-    // pareser(template.csl);
 })
 
 
@@ -115,11 +94,12 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     })
 
     // testing
-    res['publisher-place'] = 'original-place';
+    res['original-publisher-place'] = 'original-place';
 
     const citation = new Cite(res);
     let out: string = citation.format('bibliography', { format: 'text', template });
     out = out.replaceAll('title', 'r-title')
+    console.log({ res, out });
     return { res, out };
 }
 

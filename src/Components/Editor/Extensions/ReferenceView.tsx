@@ -1,4 +1,4 @@
-import { Card, CardContent, styled } from '@mui/material';
+import { Box, Card, CardActions, CardContent, Checkbox, Typography, styled } from '@mui/material';
 import { green, grey, indigo } from '@mui/material/colors';
 import { Node } from '@tiptap/pm/model';
 import { Editor, NodeViewContent, NodeViewWrapper } from '@tiptap/react';
@@ -8,6 +8,15 @@ import { useMainTab } from '../../../hooks/zustand/useMainTab';
 import CopyToClipboardButton from '../../Features/CopyToClipboardButton';
 import { elementToJson } from '../../RefBotPage/OutputTab/xmlToJsonInputForCite';
 import { FormFields } from '../../RefBotPage/RefInputDialog/RefInputDialog';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { primary } from '../../Providers/MuiThemeProvider/themeOptions';
 
 
 const CustomCard = styled(Card)(({ theme }) => ({
@@ -15,9 +24,12 @@ const CustomCard = styled(Card)(({ theme }) => ({
     position: 'relative',
     marginBottom: `30px`,
     boxShadow: theme.shadows['2'],
+    // borderLeft: `4px solid ${primary[500]} !important`,
     zIndex: 100,
+    display: 'flex',
     '&:hover': {
         border: `1px solid ${theme.palette.grey[400]} !important`,
+        // borderLeft: `4px solid ${primary[600]} !important`,
         boxShadow: theme.shadows['2'],
     },
     "& .MuiDivider-root": {
@@ -49,12 +61,7 @@ const CustomCard = styled(Card)(({ theme }) => ({
     '& .MuiCardContent-root[data-label="Input"]': {
         backgroundColor: `${grey[200]} !important`,
     },
-    '& .MuiCardContent-root[data-label="Output"], & .MuiCardContent-root[data-label="Input"]': {
-        backgroundColor: `${grey[200]} !important`,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
+
     '& .MuiCardContent-root [data-testid="ContentCopyIcon"]': {
         visibility: 'hidden',
     },
@@ -68,6 +75,10 @@ const CustomCard = styled(Card)(({ theme }) => ({
         position: 'relative',
         padding: '15px !important',
         fontFamily: 'monospace',
+        backgroundColor: `${grey[200]} !important`,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     '& .MuiCardContent-root[data-show="false"]': {
         display: 'none',
@@ -89,8 +100,24 @@ const CustomCard = styled(Card)(({ theme }) => ({
         left: '0px',
         transition: `opacity .2s ease-in-out`,
         zIndex: 0,
-    }
+    },
 
+    "& .MuiCardActions-root": {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '8px 11px',
+        gap: '5px',
+    },
+
+    "& .MuiCardActions-root .MuiButtonBase-root": {
+        margin: '0',
+    },
+
+    "& .MuiBox-root": {
+        width: `calc(100% - 58px)`,
+    },
 }));
 
 
@@ -103,6 +130,8 @@ type ReferenceViewProps = {
 const ReferenceView = (props: ReferenceViewProps) => {
     const refVisibility = useMainTab(state => state.refVisibility);
     const style = useFormContext<FormFields>().watch('style');
+
+    console.log(props);
 
     const index = props.node.attrs.index;
 
@@ -126,36 +155,63 @@ const ReferenceView = (props: ReferenceViewProps) => {
 
     }
 
+    const likeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        props.updateAttributes({
+            isLiked: e.target.value,
+        })
+    }
 
     useEffect(() => {
         updateCitation();
     }, [props.node.textContent, style]);
 
+    const isLiked = props.node.attrs.isLiked;
+    
 
     return (
         <NodeViewWrapper className="react-component">
             <CustomCard data-index={index} data-label={props.node.attrs.type}>
-                <CardContent data-show={refVisibility.input} data-label="Input">
-                    {props.node.attrs.input}
-                    <CopyToClipboardButton
-                        toCopy={props.node.attrs.input}
+                <CardActions>
+                    <Checkbox
+                        value={'Like'}
+                        checked={isLiked == "Like"}
+                        color='success'
+                        icon={<ThumbUpOffAltIcon />}
+                        checkedIcon={<ThumbUpAltIcon />}
+                        onChange={likeChangeHandler}
+                        />
+                    <Checkbox
+                        color='error'
+                        value={'DisLike'}
+                        checked={isLiked == "DisLike"}
+                        icon={<ThumbDownOffAltIcon />}
+                        checkedIcon={<ThumbDownAltIcon />}
+                        onChange={likeChangeHandler}
                     />
-                </CardContent>
-                <CardContent data-show={refVisibility.annotation} data-label="Annotation">
-                    <NodeViewContent className="content" />
-                </CardContent>
-                <CardContent data-show={refVisibility.output} data-label="Output">
-                    <div id='output-container' dangerouslySetInnerHTML={{
-                        __html: output
-                    }}></div>
-                    <CopyToClipboardButton
-                        toCopy={() => {
-                            const el = document.querySelector(`[data-index="${index}"] #output-container`);
-                            console.log(el);
-                            return el?.textContent?.trim() || ''
-                        }}
-                    />
-                </CardContent>
+                </CardActions>
+                <Box>
+                    <CardContent data-show={refVisibility.input} data-label="Input">
+                        {props.node.attrs.input}
+                        <CopyToClipboardButton
+                            toCopy={props.node.attrs.input}
+                        />
+                    </CardContent>
+                    <CardContent data-show={refVisibility.annotation} data-label="Annotation">
+                        <NodeViewContent className="content" />
+                    </CardContent>
+                    <CardContent data-show={refVisibility.output} data-label="Output">
+                        <div id='output-container' dangerouslySetInnerHTML={{
+                            __html: output
+                        }}></div>
+                        <CopyToClipboardButton
+                            toCopy={() => {
+                                const el = document.querySelector(`[data-index="${index}"] #output-container`);
+                                console.log(el);
+                                return el?.textContent?.trim() || ''
+                            }}
+                        />
+                    </CardContent>
+                </Box>
             </CustomCard>
         </NodeViewWrapper>
     )
