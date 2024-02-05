@@ -1,13 +1,14 @@
 
 import Cite from 'citation-js';
 import { cslTemplated } from '../cslTemplates';
+import cslPreParser from '../../../utils/citation/cslPreParser';
 // require("citation-js/plugin-bibtex");
 // require("citation-js/plugin-ris");
 
 
 let config = Cite.plugins.config.get('@csl')
 cslTemplated.map(template => {
-    config.templates.add(template.key, template.csl);
+    config.templates.add(template.key, cslPreParser({ xml: template.csl }));
 })
 
 

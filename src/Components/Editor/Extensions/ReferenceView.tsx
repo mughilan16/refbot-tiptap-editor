@@ -1,4 +1,8 @@
-import { Box, Card, CardActions, CardContent, Checkbox, Typography, styled } from '@mui/material';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { Box, Card, CardActions, CardContent, Checkbox, styled } from '@mui/material';
 import { green, grey, indigo, red } from '@mui/material/colors';
 import { Node } from '@tiptap/pm/model';
 import { Editor, NodeViewContent, NodeViewWrapper } from '@tiptap/react';
@@ -8,15 +12,7 @@ import { useMainTab } from '../../../hooks/zustand/useMainTab';
 import CopyToClipboardButton from '../../Features/CopyToClipboardButton';
 import { elementToJson } from '../../RefBotPage/OutputTab/xmlToJsonInputForCite';
 import { FormFields } from '../../RefBotPage/RefInputDialog/RefInputDialog';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import { primary } from '../../Providers/MuiThemeProvider/themeOptions';
+import safeHtmlFormatter from '../../../utils/safeHtmlFormatter';
 
 
 const CustomCard = styled(Card)(({ theme }) => ({
@@ -24,19 +20,19 @@ const CustomCard = styled(Card)(({ theme }) => ({
     position: 'relative',
     marginBottom: `30px`,
     boxShadow: theme.shadows['2'],
-    borderLeft: `4px solid ${grey[600]} !important`,
+    borderLeft: `3px solid ${grey[600]} !important`,
     zIndex: 100,
     display: 'flex',
     '&:hover': {
         border: `1px solid ${theme.palette.grey[400]} !important`,
-        borderLeft: `4px solid ${grey[600]} !important`,
+        borderLeft: `3px solid ${grey[600]} !important`,
         boxShadow: theme.shadows['2'],
     },
     "&:has([data-testid='ThumbUpAltIcon'])": {
-        borderLeft: `4px solid ${green[500]} !important`,
+        borderLeft: `3px solid ${green[500]} !important`,
     },
     "&:has([data-testid='ThumbDownAltIcon'])": {
-        borderLeft: `4px solid ${red[500]} !important`,
+        borderLeft: `3px solid ${red[500]} !important`,
     },
     "& .MuiDivider-root": {
         borderColor: `${theme.palette.grey[300]} !important`,
@@ -115,7 +111,6 @@ const CustomCard = styled(Card)(({ theme }) => ({
         justifyContent: 'center',
         padding: '8px 11px',
         gap: '5px',
-        // backgroundColor: grey[50],
     },
 
     "& .MuiCardActions-root .MuiButtonBase-root": {
@@ -152,6 +147,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
                 template: style?.value ?? 'apa',
                 type: 'article',
             })?.out || '';
+            out = safeHtmlFormatter({format: 'SafeToNormal', value: out})
         } catch (error) {
             console.log(error);
         }

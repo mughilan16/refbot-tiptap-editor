@@ -1,9 +1,9 @@
-import { Box, Stack, Typography, styled } from '@mui/material'
-import { useMainTab } from '../../../hooks/zustand/useMainTab'
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import { Box, Stack, Typography, styled } from '@mui/material';
 import { green, grey, red } from '@mui/material/colors';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import { useMainTab } from '../../../hooks/zustand/useMainTab';
 
 const StyledStack = styled(Stack)(({ theme }) => ({
     flexDirection: 'row',

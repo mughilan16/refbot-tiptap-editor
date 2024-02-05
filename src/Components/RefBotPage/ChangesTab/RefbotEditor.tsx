@@ -1,8 +1,8 @@
 import { Box, Paper } from '@mui/material';
-import { RichTextField } from 'mui-tiptap';
-import EditorMenuControls from './EditorMenuControls';
-import '../styles.css'
 import { grey } from '@mui/material/colors';
+import { RichTextField } from 'mui-tiptap';
+import '../styles.css';
+import EditorMenuControls from './EditorMenuControls';
 
 const RefbotEditor = () => {
     // const editor = useRichTextEditorContext();
