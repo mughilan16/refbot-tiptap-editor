@@ -59,6 +59,7 @@ type ReferenceInput = {
     abstract?: string,
     language?: string,
     note?: string,
+    "original-publisher-place"?: string,
 }
 
 let a: ReferenceInput = {

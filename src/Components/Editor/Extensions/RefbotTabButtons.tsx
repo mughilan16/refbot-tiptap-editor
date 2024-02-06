@@ -45,7 +45,7 @@ const RefbotTabButtons = () => {
                     })} variant={refVisibility.output ? 'contained' : 'outlined'} size='small'>Output</Button>
                 </ButtonGroup>
                 :
-                <FormGroup sx={{ display: 'flex', flexDirection: 'row' }}>
+                <FormGroup sx={{ display: 'flex', flexDirection: 'row', '& label': { backgroundColor: 'inherit !important' } }}>
                     {checks.map((check, index) => (
                         <FormControlLabel
                             key={index}

@@ -14,7 +14,11 @@ export default function App() {
 
   const methods = useForm<FormFields>({
     defaultValues: {
-      content: citationText
+      content: citationText,
+      style: {
+        "label": "APA",
+        "value": "apa"
+      }
     },
   });
 
@@ -27,18 +31,14 @@ export default function App() {
           <RefbotEditorProvider>
             <style>{referenceElements.map(refEl => {
               let name = refEl.name;
-              if(name == 'surname'){
+              if (name == 'surname') {
                 name = 'family';
-              }else if(name == 'label'){
-                name = 'r-label';
-              }else if(name == 'date-in-citation'){
+              } else if (name == 'date-in-citation') {
                 name = 'date-parts';
-              }else if(name == 'pages'){
+              } else if (name == 'pages') {
                 name = 'page';
-              }else if(name == 'title'){
-                name = 'r-title'
               }
-              return `${name}{background-color: ${refEl.color}}`
+              return `${name}{background-color: ${refEl.color}}` + `r-${name}{background-color: ${refEl.color}}`
             })}</style>
             <RefbotEditor />
           </RefbotEditorProvider>

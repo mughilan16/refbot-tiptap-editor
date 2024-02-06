@@ -133,8 +133,6 @@ const ReferenceView = (props: ReferenceViewProps) => {
     const refVisibility = useMainTab(state => state.refVisibility);
     const style = useFormContext<FormFields>().watch('style');
 
-    console.log(props);
-
     const index = props.node.attrs.index;
 
     const [output, setOutput] = useState('');
@@ -151,7 +149,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
         } catch (error) {
             console.log(error);
         }
-        console.log(out);
+        // console.log(out);
         setOutput(out);
 
         // props.editor.commands.updateAttributes('paragraph', { value: output, format: 'NormalToSafe' })
