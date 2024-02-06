@@ -24,15 +24,15 @@ const cslPreParser = ({ xml }: { xml: string }) => {
             let variable = el.getAttribute('variable');
             console.log({ variable });
             el.querySelectorAll('name').forEach(nameEl => {
-                nameEl
                 nameEl.setAttribute('prefix', `‹r-${variable}›` + attr.prefix);
                 nameEl.setAttribute('suffix', attr.suffix + `‹/r-${variable}›`);
             });
-            attr.tag = variable + 's';
+            // attr.tag = variable + 's';
         }
-        el.setAttribute('prefix', `‹r-${attr.tag}›` + attr.prefix);
-        el.setAttribute('suffix', attr.suffix + `‹/r-${attr.tag}›`);
-        console.log(el.tagName);
+        if(attr.tag){
+            el.setAttribute('prefix', `‹r-${attr.tag}›` + attr.prefix);
+            el.setAttribute('suffix', attr.suffix + `‹/r-${attr.tag}›`);
+        }
     });
 
     let xmlSerializer = new XMLSerializer();

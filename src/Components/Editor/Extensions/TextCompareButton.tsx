@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import axiosLaravel, { apiURL } from '../../../utils/axiosLaravel';
 import { replaceSlashIntoPlus } from '../../../utils/string/replaceSlashIntoPlus';
+import removeParentTags from '../../../utils/citation/removeParentTags';
 
 const TextCompareButton = () => {
-  
+
   const [state, setState] = useState({ isLoading: false });
   const { enqueueSnackbar } = useSnackbar();
 
@@ -14,19 +15,14 @@ const TextCompareButton = () => {
 
     let references = [...document.querySelectorAll(`[data-index]`)].map(refEl => {
       let inputText = refEl.querySelector(`[data-label="Input"]`)?.textContent || ''
-      let convertedXml = refEl.querySelector(`[data-label="Output"] #output-container`)?.innerHTML || ''
-      // let annotationXml = refEl.querySelector(`[data-label="Annotation"]`)?.innerHTML || ''
+      let convertedXml = removeParentTags({ parentEl: refEl.querySelector(`[data-label="Output"] #output-container`) }).replaceAll('<r-', '<').replaceAll('</r-', '</');
+      // let convertedXml = refEl.querySelector(`[data-label="Output"] #output-container`)?.innerHTML || ''
       return { inputText, convertedXml };
     })
     setState(pre => ({ ...pre, isLoading: true }));
     axiosLaravel.post('/ref-bot-to-word', { references })
       .then(res => {
         window.open(`${apiURL}/file-download/${replaceSlashIntoPlus(res.data.data.outputFile)}`, '_blank')
-        enqueueSnackbar({
-          message: 'Success',
-          variant: 'success',
-          
-        });
         console.log(res);
       }).catch(err => {
         enqueueSnackbar({
@@ -38,7 +34,6 @@ const TextCompareButton = () => {
       })
 
   }
-
 
   return (
     <LoadingButton
