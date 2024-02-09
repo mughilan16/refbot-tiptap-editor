@@ -36,7 +36,7 @@ export const CustomParagraph = Paragraph.extend({
                 default: generateRandomNumber(1, 1000),
             },
             likeStatus: {
-                default: 'None',
+                default: 'Like',
             },
         };
     },

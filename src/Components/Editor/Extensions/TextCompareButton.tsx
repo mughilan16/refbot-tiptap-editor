@@ -5,6 +5,7 @@ import { useSnackbar } from 'notistack';
 import axiosLaravel, { apiURL } from '../../../utils/axiosLaravel';
 import { replaceSlashIntoPlus } from '../../../utils/string/replaceSlashIntoPlus';
 import removeParentTags from '../../../utils/citation/removeParentTags';
+import { useMainTab } from '../../../hooks/zustand/useMainTab';
 
 const TextCompareButton = () => {
 
@@ -19,8 +20,15 @@ const TextCompareButton = () => {
       // let convertedXml = refEl.querySelector(`[data-label="Output"] #output-container`)?.innerHTML || ''
       return { inputText, convertedXml };
     })
+    const { DisLike, Like, Total } = useMainTab.getState().feedBack;
+
     setState(pre => ({ ...pre, isLoading: true }));
-    axiosLaravel.post('/ref-bot-to-word', { references })
+    axiosLaravel.post('/ref-bot-to-word', {
+      references,
+      no_of_references: Total,
+      no_of_likes: Like,
+      no_of_dislikes: DisLike,
+    })
       .then(res => {
         window.open(`${apiURL}/file-download/${replaceSlashIntoPlus(res.data.data.outputFile)}`, '_blank')
         console.log(res);

@@ -36,7 +36,7 @@ const StyledStack = styled(Stack)(({ theme }) => ({
     }
 }));
 
-const BeedBackCountButton = () => {
+const FeedBackCountButton = () => {
 
     const feedBack = useMainTab(state => state.feedBack);
 
@@ -58,4 +58,4 @@ const BeedBackCountButton = () => {
     )
 }
 
-export default BeedBackCountButton
+export default FeedBackCountButton

@@ -21,7 +21,7 @@ import TextCompareButton from "../../Editor/Extensions/TextCompareButton";
 import ElementNestingLevel from "../ElementNestingLevel";
 import ReferenceStyleInput from "../OutputTab/ReferenceStyleInput";
 import RefInputDialog from "../RefInputDialog/RefInputDialog";
-import BeedBackCountButton from "../../Editor/Extensions/BeedBackCountButton";
+import FeedBackCountButton from "../../Editor/Extensions/FeedBackCountButton";
 
 export default function EditorMenuControls() {
   const theme = useTheme();
@@ -44,7 +44,7 @@ export default function EditorMenuControls() {
         <RefbotButtons />
         <RefInputDialog open />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <BeedBackCountButton />
+          <FeedBackCountButton />
           <MenuButtonBold />
           <MenuButtonItalic />
           <MenuButtonSubscript />
@@ -54,7 +54,7 @@ export default function EditorMenuControls() {
           <MenuButtonUndo />
           <MenuButtonRedo />
           <MenuDivider />
-          <Box sx={{display: 'flex', justifyContent: 'flex-start', alignContent: 'center', alignItems: 'center'}}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignContent: 'center', alignItems: 'center' }}>
             <RefbotTabButtons />
             <TextCompareButton />
             <ReferenceStyleInput />
