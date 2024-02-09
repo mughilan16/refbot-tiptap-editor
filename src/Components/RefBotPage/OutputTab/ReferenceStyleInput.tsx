@@ -61,7 +61,7 @@ const ReferenceStyleInput = () => {
                             }}
                             disablePortal
                             disableClearable
-                            options={[...defaultOptions, ...options]}
+                            options={options}
                             onChange={(e, option) => {
                                 onChange(option);
                                 // setValue('macroIds', option?.macros ?? []);
