@@ -145,7 +145,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
                 template: style?.value ?? 'apa',
                 type: 'article',
             })?.out || '';
-            out = safeHtmlFormatter({format: 'SafeToNormal', value: out})
+            out = safeHtmlFormatter({ format: 'SafeToNormal', value: out })
         } catch (error) {
             console.log(error);
         }
@@ -153,6 +153,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
         setOutput(out);
 
         // props.editor.commands.updateAttributes('paragraph', { value: output, format: 'NormalToSafe' })
+        return out;
 
     }
     const likeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -162,7 +163,11 @@ const ReferenceView = (props: ReferenceViewProps) => {
     }
 
     useEffect(() => {
-        updateCitation();
+        const timeOutId = setTimeout(() => {
+            updateCitation();
+        }, 200);
+        console.log(props.node.textContent);
+        () => clearTimeout(timeOutId);
     }, [props.node.textContent, style]);
 
     const likeStatus = props.node.attrs.likeStatus;
