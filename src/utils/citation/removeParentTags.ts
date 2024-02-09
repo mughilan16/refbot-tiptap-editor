@@ -1,12 +1,16 @@
 
 const removeParentTags = ({ parentEl }: { parentEl: Element | null }): string => {
     let out = '';
-    function loopParent(targetParent: NodeList) {
+    function loopParent(targetParent: NodeListOf<ChildNode| HTMLElement>) {
         targetParent.forEach(element => {
-            if (element.childElementCount) {
+            if (element.hasChildNodes()) {
                 loopParent(element.childNodes);
             } else {
-                out += element.nodeType == 3 ? element.textContent : element.outerHTML;
+                if(element.nodeType == 3){
+                    out += element.textContent;
+                }else if(element instanceof HTMLElement){
+                    out +=  element?.outerHTML;
+                }
                 console.log(element.nodeType, element);
             }
         });
