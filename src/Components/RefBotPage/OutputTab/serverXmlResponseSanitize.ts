@@ -14,4 +14,5 @@ const serverXmlResponseSanitize = (xml: string) => {
     return data.innerHTML;
 }
 
+
 export default serverXmlResponseSanitize
