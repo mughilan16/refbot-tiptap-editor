@@ -6,12 +6,14 @@ import axiosLaravel, { apiURL } from '../../../utils/axiosLaravel';
 import { replaceSlashIntoPlus } from '../../../utils/string/replaceSlashIntoPlus';
 import removeParentTags from '../../../utils/citation/removeParentTags';
 import { useMainTab } from '../../../hooks/zustand/useMainTab';
+import { useFormContext } from 'react-hook-form';
+import { FormFields } from '../../RefBotPage/RefInputDialog/RefInputDialog';
 
 const TextCompareButton = () => {
 
   const [state, setState] = useState({ isLoading: false });
   const { enqueueSnackbar } = useSnackbar();
-
+  const getValues = useFormContext<FormFields>().getValues;
   const onClickHandler = async () => {
 
     let references = [...document.querySelectorAll(`[data-index]`)].map(refEl => {
@@ -28,6 +30,7 @@ const TextCompareButton = () => {
       no_of_references: Total,
       no_of_likes: Like,
       no_of_dislikes: DisLike,
+      bibliography_style: getValues('style.value'),
     })
       .then(res => {
         window.open(`${apiURL}/file-download/${replaceSlashIntoPlus(res.data.data.outputFile)}`, '_blank')
