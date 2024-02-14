@@ -148,6 +148,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
             out = safeHtmlFormatter({ format: 'SafeToNormal', value: out })
             .replaceAll('r-publisher>', 'r-publisher-name>')
             .replaceAll('r-publisher-place>', 'r-publisher-loc>')
+            .replaceAll('r-family>', 'r-surname>')
         } catch (error) {
             console.log(error);
         }
