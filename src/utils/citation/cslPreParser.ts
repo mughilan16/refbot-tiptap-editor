@@ -22,7 +22,6 @@ const cslPreParser = ({ xml }: { xml: string }) => {
             attr.tag = el.getAttribute('name') || '';
         } else if (tagName == 'names') {
             let variable = el.getAttribute('variable');
-            // console.log({ variable });
             el.querySelectorAll('name').forEach(nameEl => {
                 nameEl.setAttribute('prefix', `‹r-${variable}›` + attr.prefix);
                 nameEl.setAttribute('suffix', attr.suffix + `‹/r-${variable}›`);

@@ -146,6 +146,8 @@ const ReferenceView = (props: ReferenceViewProps) => {
                 type: 'article',
             })?.out || '';
             out = safeHtmlFormatter({ format: 'SafeToNormal', value: out })
+            .replaceAll('r-publisher>', 'r-publisher-name>')
+            .replaceAll('r-publisher-place>', 'r-publisher-loc>')
         } catch (error) {
             console.log(error);
         }
