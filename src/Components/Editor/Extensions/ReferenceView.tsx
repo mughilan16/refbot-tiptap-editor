@@ -149,6 +149,8 @@ const ReferenceView = (props: ReferenceViewProps) => {
             .replaceAll('r-publisher>', 'r-publisher-name>')
             .replaceAll('r-publisher-place>', 'r-publisher-loc>')
             .replaceAll('r-family>', 'r-surname>')
+            .replaceAll('title>', 'r-title>')
+            .replaceAll('r-container-r-title>', 'r-source>')
         } catch (error) {
             console.log(error);
         }

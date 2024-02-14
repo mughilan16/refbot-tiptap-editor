@@ -99,7 +99,6 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
 
     const citation = new Cite(res);
     let out: string = citation.format('bibliography', { format: 'text', template });
-    out = out.replaceAll('title', 'r-title')
     // console.log({ res, out });
     return { res, out };
 }
