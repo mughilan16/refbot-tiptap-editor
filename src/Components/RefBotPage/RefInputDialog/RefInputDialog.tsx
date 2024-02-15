@@ -41,16 +41,21 @@ export default function RefInputDialog({ open }: { open: boolean }) {
     }
 
     const onSubmit = (data: FormFields) => {
-        return axiosLaravel.post('/ref-bot-styler', { text: data.content, parentFolder: `ref-bot/${uuidv4()}` }).then(res => {
-            const data = res.data.data.out as string[];
-            dispatch({
-                type: 'SetXmlData',
-                payload: {
-                    data,
-                }
+        return axiosLaravel.postForm('/ref-bot-styler', { text: data.content, docxFile: data.docxFile, parentFolder: `ref-bot/${uuidv4()}` }).then(res => {
+            const replaceSlashIntoPlus = (segment: string) => segment.replace(/[\/\\]/g, '+')
+            // let data = res.data.data.out as string[];
+            axiosLaravel.get(`/file-download/${replaceSlashIntoPlus(res.data.data.resultPath)}`).then(res => {
+                let data: string = res.data;
+                console.log(res);
+                dispatch({
+                    type: 'SetXmlData',
+                    payload: {
+                        data: data.split('\n'),
+                    }
+                })
+                editor?.commands.setContent(serverXmlResponseSanitize(data));
+                closeDialog();
             })
-            editor?.commands.setContent(serverXmlResponseSanitize(data.join('')));
-            closeDialog();
         }).catch(error => {
             enqueueSnackbar({
                 message: 'Error',
@@ -80,8 +85,8 @@ export default function RefInputDialog({ open }: { open: boolean }) {
                 <DialogContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', padding: '10px'}}>
                     {/* <LoadingDialog open={true}/> */}
                     <TextInput/>
-                    {/* <Typography>(or)</Typography>
-                    <FileInput/>  */}
+                    <Typography>(or)</Typography>
+                    <FileInput/> 
                 </DialogContent>
                 <Divider/>
                 <DialogActions sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

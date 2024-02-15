@@ -18,7 +18,10 @@ const TextCompareButton = () => {
 
     let references = [...document.querySelectorAll(`[data-index]`)].map(refEl => {
       let inputText = refEl.querySelector(`[data-label="Input"]`)?.textContent || ''
-      let convertedXml = removeParentTags({ parentEl: refEl.querySelector(`[data-label="Output"] #output-container`) }).replaceAll('<r-', '<').replaceAll('</r-', '</');
+      let convertedXml = removeParentTags({ parentEl: refEl.querySelector(`[data-label="Output"] #output-container`) })
+        .replaceAll('<r-', '<')
+        .replaceAll('page>', 'lable>')
+        .replaceAll('</r-', '</');
       // let convertedXml = refEl.querySelector(`[data-label="Output"] #output-container`)?.innerHTML || ''
       return { inputText, convertedXml };
     })
