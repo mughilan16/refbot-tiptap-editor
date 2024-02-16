@@ -1,4 +1,3 @@
-
 const cslPreParser = ({ xml }: { xml: string }) => {
 
     let parser = new DOMParser();

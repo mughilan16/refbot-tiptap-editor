@@ -11,7 +11,7 @@ const TextInput = () => {
             name='content'
             control={control}
             rules={{
-                required: 'This field is required',
+                // required: 'This field is required',
             }}
             render={({ field }) => (
                 <TextField

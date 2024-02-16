@@ -2,6 +2,7 @@
 import Cite from 'citation-js';
 import { cslTemplated } from '../cslTemplates';
 import cslPreParser from '../../../utils/citation/cslPreParser';
+import { ReferenceInput } from '../types';
 // require("citation-js/plugin-bibtex");
 // require("citation-js/plugin-ris");
 
@@ -23,9 +24,15 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
 
     const collectValue = ({ tagName, key }: { tagName: string, key: keyof Omit<ReferenceInput, 'author' | 'issued' | 'editor' | 'translator'> }) => {
         const tag = el.querySelector(`r-${tagName}`);
-        if (tag) {
-            console.log(key, tag.textContent);
+        if(!tag) return;
+        if (tagName != `collab`) {
+            // console.log(key, tag.textContent);
             res[key] = tag.textContent || '';
+        } else if (tagName == `collab`) {
+            res['author']?.push({
+                family: tag.textContent || '',
+                given: '',
+            });
         }
     }
 
@@ -39,7 +46,6 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
     collectValue({ key: 'publisher', tagName: 'publisher-name' });
     collectValue({ key: 'container-title', tagName: 'source' });
     collectValue({ key: 'publisher-place', tagName: 'publisher-loc' });
-    // collectValue({ key: 'organizer', tagName: 'collab' });
     collectValue({ key: 'page', tagName: 'pages' });
     collectValue({ key: 'title', tagName: 'title' });
     collectValue({ key: 'edition', tagName: 'edition' });
@@ -94,12 +100,15 @@ export const elementToJson = ({ el, template, type }: { el: HTMLElement | null, 
         }
     })
 
+    collectValue({ key: 'family', tagName: 'collab' });
+
     // testing
     res['original-publisher-place'] = 'original-place';
 
     const citation = new Cite(res);
     let out: string = citation.format('bibliography', { format: 'text', template });
-    // console.log({ res, out });
+    console.log({ res, out });
+    out = out.replaceAll('<title', '<div').replaceAll('</title', '</div')
     return { res, out };
 }
 

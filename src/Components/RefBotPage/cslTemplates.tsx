@@ -5740,5 +5740,4 @@ export const cslTemplated: { csl: string, name: string, key: string }[] = [
     </style>
     `,
   },
-]
-
+] as const

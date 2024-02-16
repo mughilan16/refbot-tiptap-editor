@@ -36,7 +36,7 @@ type Name = {
     given: string,
 }
 
-type ReferenceInput = {
+export type ReferenceInput = {
     id?: string,
     title?: string,
     author?: Name[],
@@ -60,6 +60,9 @@ type ReferenceInput = {
     language?: string,
     note?: string,
     "original-publisher-place"?: string,
+    organizer?: string,
+    family?: string,
+    given?: string,
 }
 
 let a: ReferenceInput = {
