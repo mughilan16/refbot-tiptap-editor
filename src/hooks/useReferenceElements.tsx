@@ -24,8 +24,9 @@ const useReferenceElements = () => {
         queryFn: async () => {
             return axiosLaravel
                 .get<GetReferenceElementResponse>("reference-element")
-                .then((res) => res.data);
-        }
+                .then((res) => res.data.data.referenceStyles);
+        },
+        refetchOnMount: true,
     })
 }
 
