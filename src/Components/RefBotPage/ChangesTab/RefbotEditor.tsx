@@ -11,6 +11,7 @@ import { FormFields } from '../RefInputDialog/RefInputDialog';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosLaravel from '../../../utils/axiosLaravel';
+import useReferenceElements from '../../../hooks/useReferenceElements';
 
 
 
@@ -46,11 +47,14 @@ const RefbotEditor = () => {
     //     // console.log(editor?.isEditable, value);
     // }, []);
 
+    const { data } = useReferenceElements();
+
 
     return (
         <FormProvider {...methods}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', height: `100vh`, backgroundColor: grey[50] }}>
-                <style>{referenceElements.map(refEl => {
+                <style>{data?.map(refEl => {
+                    const originalname = refEl.name;
                     let name = refEl.name;
                     if (name == 'surname') {
                         name = 'family';
@@ -59,7 +63,7 @@ const RefbotEditor = () => {
                     } else if (name == 'pages') {
                         name = 'page';
                     }
-                    return `${name}{background-color: ${refEl.color}}` + `r-${name}{background-color: ${refEl.color}}`
+                    return `${name}, r-${name}, ${originalname}, r-${originalname}{background-color: ${refEl.color}}`
                 })}</style>
                 <EditorMenuControls />
                 <Paper className='editor-container' sx={{ height: 'calc(100vh - 80px)', overflowY: 'scroll', margin: '10px', backgroundColor: grey[50] }}>

@@ -48,7 +48,7 @@ export const RefbotMark = ({ name, tag, color }: { name: string, tag: string, co
             // parseHTML: element => element.getAttribute('data-color') || element.style.backgroundColor,
             renderHTML: attributes => {
                 return {
-                    style: `background-color: ${color}; color: inherit`,
+                    // style: `background-color: ${color}; color: inherit`,
                     tag: 'ref-bot',
                 }
             },
