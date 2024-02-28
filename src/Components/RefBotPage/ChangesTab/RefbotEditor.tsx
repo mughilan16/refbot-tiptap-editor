@@ -19,7 +19,8 @@ const RefbotEditor = () => {
     // const editor = useRichTextEditorContext();
     const methods = useForm<FormFields>({
         defaultValues: {
-            content: citationText,
+            // content: citationText,
+            content: '',
             style: {
                 "label": "APA",
                 "value": "apa_custom"

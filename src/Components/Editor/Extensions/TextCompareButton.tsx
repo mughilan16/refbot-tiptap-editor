@@ -21,7 +21,8 @@ const TextCompareButton = () => {
       let convertedXml = removeParentTags({ parentEl: refEl.querySelector(`[data-label="Output"] #output-container`) })
         .replaceAll('<r-', '<')
         .replaceAll('page>', 'lable>')
-        .replaceAll('</r-', '</');
+        .replaceAll('</r-', '</')
+        .replaceAll('&nbsp;', '');
       // let convertedXml = refEl.querySelector(`[data-label="Output"] #output-container`)?.innerHTML || ''
       return { inputText, convertedXml };
     })

@@ -18,7 +18,7 @@ const TextInput = () => {
                     // style={{margin: '10px'}}
                     multiline
                     fullWidth
-                    rows={10}
+                    rows={5}
                     // label='Text'
                     InputProps={{ ...field, }}
                     value={'toLowerCase'}
