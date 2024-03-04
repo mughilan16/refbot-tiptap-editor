@@ -56,8 +56,8 @@ export default function EditorMenuControls() {
           <MenuDivider />
           <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignContent: 'center', alignItems: 'center' }}>
             <RefbotTabButtons />
-            <TextCompareButton />
             <ReferenceStyleInput />
+            <TextCompareButton />
             <ElementNestingLevel />
           </Box>
 

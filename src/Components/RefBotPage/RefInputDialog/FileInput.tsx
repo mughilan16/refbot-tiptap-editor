@@ -17,17 +17,19 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const FileInput = () => {
-    const { formState, setValue } = useFormContext<FormFields>();
+    const { formState, setValue, watch } = useFormContext<FormFields>();
     const { errors, isSubmitting } = formState;
+
+    const docxFile = watch('docxFile');
 
     return (
         <Button component="label" variant="outlined" startIcon={<CloudUploadIcon />}>
-            Upload file
+            {((docxFile?.length || 0) > 0) ? `Upload file` : 'File selected'}
             <VisuallyHiddenInput
-            onChange={(e) => {
-                setValue("docxFile", e.target.files)
-            }}
-             accept='.docx' type="file" />
+                onChange={(e) => {
+                    setValue("docxFile", e.target.files)
+                }}
+                accept='.docx' type="file" />
         </Button>
     )
 }
