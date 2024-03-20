@@ -49,7 +49,7 @@ const CustomCard = styled(Card)(({ theme }) => ({
         position: 'absolute',
         top: '0px',
         fontWeight: 800,
-        right: '0px',
+        left: '0px',
         zIndex: 101,
     },
     "&:hover .MuiCardContent-root:before": {
@@ -182,7 +182,7 @@ const ReferenceView = (props: ReferenceViewProps) => {
 
     return (
         <NodeViewWrapper className="react-component">
-            <CustomCard data-index={index} data-label={props.node.attrs.type}>
+            <CustomCard data-index={index} data-label={style.value || props.node.attrs.type}>
                 <CardActions>
                     <Checkbox
                         value={'Like'}
