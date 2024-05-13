@@ -17,10 +17,16 @@ type Action = {
   addComment: (content: string) => Comment
   setActiveCommentId: (id: string | null) => void
   setComments: (comments: Comment[]) => void
+  addReply: (content: string, commentId: string) => void
 }
 
 const useCommentStore = create<State & Action>((set) => ({
-  comments: [],
+  comments: [{
+    id: "0",
+    content: "example",
+    replies: [{ id: "0", content: "example reply", createdAt: new Date(), replies: [] }],
+    createdAt: new Date()
+  }],
   activeCommentId: null,
   addComment(content) {
     const newComment = {
@@ -40,6 +46,19 @@ const useCommentStore = create<State & Action>((set) => ({
   setComments(comments) {
     set(prev => ({ ...prev, comments: comments }))
   },
+  addReply(content, commentId) {
+    set(prev => ({
+      ...prev, comments: prev.comments.map(comment => comment.id === commentId ? ({
+        ...comment, replies: [...comment.replies, {
+          id: `a${v4()}a`,
+          content: content,
+          replies: [],
+          createdAt: new Date()
+        }]
+      }) : comment
+      )
+    }))
+  }
 }))
 
 export default useCommentStore
