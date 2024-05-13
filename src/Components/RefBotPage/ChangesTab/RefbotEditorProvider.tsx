@@ -4,20 +4,20 @@ import React from 'react'
 import useExtensions from '../../Editor/useExtensions';
 
 const RefbotEditorProvider = ({ children }: { children: React.ReactNode }) => {
-    const extensions = useExtensions({
-        placeholder: "Add your own content here...",
-    });
+  const extensions = useExtensions({
+    placeholder: "Add your own content here...",
+  });
 
-    const editor = useEditor({
-        extensions,
-        content: '',
-    })
+  const editor = useEditor({
+    extensions,
+    content: '',
+  })
 
-    return (
-        <RichTextEditorProvider editor={editor}>
-            {children}
-        </RichTextEditorProvider>
-    )
+  return (
+    <RichTextEditorProvider editor={editor}>
+      {children}
+    </RichTextEditorProvider>
+  )
 }
 
 export default RefbotEditorProvider

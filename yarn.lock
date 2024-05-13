@@ -202,9 +202,6 @@
 "@emotion/weak-memoize@^0.3.1":
   version "0.3.1"
 
-"@esbuild/win32-x64@0.18.20":
-  version "0.18.20"
-
 "@floating-ui/core@^1.5.3":
   version "1.5.3"
   dependencies:
@@ -346,31 +343,46 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.15.0.tgz"
   integrity sha512-HOil5aFtme37dVQTB6M34G95kPM3MMuqSmIRVCC52eKV+Y/tGSqw9P3rWhlAx6A+mz+MoX+XxsGsNJbaI5qCgQ==
 
-"@swc/core-win32-x64-msvc@1.3.105":
-  version "1.3.105"
+"@sereneinserenade/tiptap-comment-extension@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/@sereneinserenade/tiptap-comment-extension/-/tiptap-comment-extension-0.1.2.tgz"
+  integrity sha512-ExUgTIakb0vRGzOY1ucs8FQd2FvNIW59faYsuL1V45evYeVbwT0pGc1U/AaoXp6a+advkUGQy04ThURH7heOPA==
 
-"@swc/core@^1.3.96":
-  version "1.3.105"
+"@swc/core-linux-x64-gnu@1.5.5":
+  version "1.5.5"
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.5.5.tgz"
+  integrity sha512-kj4ZwWJGeBEUzHrRQP2VudN+kkkYH7OI1dPVDc6kWQx5X4329JeKOas4qY0l7gDVjBbRwN9IbbPI6TIn2KfAug==
+
+"@swc/core@^1.3.107":
+  version "1.5.5"
+  resolved "https://registry.npmjs.org/@swc/core/-/core-1.5.5.tgz"
+  integrity sha512-M8O22EEgdSONLd+7KRrXj8pn+RdAZZ7ISnPjE9KCQQlI0kkFNEquWR+uFdlFxQfwlyCe/Zb6uGXGDvtcov4IMg==
   dependencies:
-    "@swc/counter" "^0.1.1"
+    "@swc/counter" "^0.1.2"
     "@swc/types" "^0.1.5"
   optionalDependencies:
-    "@swc/core-darwin-arm64" "1.3.105"
-    "@swc/core-darwin-x64" "1.3.105"
-    "@swc/core-linux-arm-gnueabihf" "1.3.105"
-    "@swc/core-linux-arm64-gnu" "1.3.105"
-    "@swc/core-linux-arm64-musl" "1.3.105"
-    "@swc/core-linux-x64-gnu" "1.3.105"
-    "@swc/core-linux-x64-musl" "1.3.105"
-    "@swc/core-win32-arm64-msvc" "1.3.105"
-    "@swc/core-win32-ia32-msvc" "1.3.105"
-    "@swc/core-win32-x64-msvc" "1.3.105"
+    "@swc/core-darwin-arm64" "1.5.5"
+    "@swc/core-darwin-x64" "1.5.5"
+    "@swc/core-linux-arm-gnueabihf" "1.5.5"
+    "@swc/core-linux-arm64-gnu" "1.5.5"
+    "@swc/core-linux-arm64-musl" "1.5.5"
+    "@swc/core-linux-x64-gnu" "1.5.5"
+    "@swc/core-linux-x64-musl" "1.5.5"
+    "@swc/core-win32-arm64-msvc" "1.5.5"
+    "@swc/core-win32-ia32-msvc" "1.5.5"
+    "@swc/core-win32-x64-msvc" "1.5.5"
 
-"@swc/counter@^0.1.1":
-  version "0.1.2"
+"@swc/counter@^0.1.2", "@swc/counter@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz"
+  integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
 
 "@swc/types@^0.1.5":
-  version "0.1.5"
+  version "0.1.6"
+  resolved "https://registry.npmjs.org/@swc/types/-/types-0.1.6.tgz"
+  integrity sha512-/JLo/l2JsT/LRd80C3HfbmVpxOAJ11FO2RCEslFrgzLltoP9j8XIbsyDcfCt2WWyX+CM96rBoNM+IToAkFOugg==
+  dependencies:
+    "@swc/counter" "^0.1.3"
 
 "@tanstack/query-core@5.17.19":
   version "5.17.19"
@@ -418,7 +430,7 @@
   dependencies:
     "@tanstack/query-core" "5.17.19"
 
-"@tiptap/core@^2.0.0", "@tiptap/core@^2.0.0-beta.210", "@tiptap/core@2.0.4":
+"@tiptap/core@^2.0.0", "@tiptap/core@^2.0.0-beta.210", "@tiptap/core@^2.x.x", "@tiptap/core@2.0.4":
   version "2.0.4"
 
 "@tiptap/extension-blockquote@2.0.4":
@@ -541,7 +553,7 @@
 "@tiptap/extension-underline@2.0.4":
   version "2.0.4"
 
-"@tiptap/pm@^2.0.0", "@tiptap/pm@^2.0.0-beta.210", "@tiptap/pm@2.0.4":
+"@tiptap/pm@^2.0.0", "@tiptap/pm@^2.0.0-beta.210", "@tiptap/pm@^2.x.x", "@tiptap/pm@2.0.4":
   version "2.0.4"
   dependencies:
     prosemirror-changeset "^2.2.0"
@@ -612,10 +624,12 @@
   resolved "https://registry.npmjs.org/@types/uuid/-/uuid-9.0.8.tgz"
   integrity sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==
 
-"@vitejs/plugin-react-swc@^3.3.1":
-  version "3.5.0"
+"@vitejs/plugin-react-swc@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/@vitejs/plugin-react-swc/-/plugin-react-swc-3.6.0.tgz"
+  integrity sha512-XFRbsGgpGxGzEV5i5+vRiro1bwcIaZDIdBRP16qwm+jP68ue/S8FJTBEgOeojtVDYrbSua3XFp71kC8VJE6v+g==
   dependencies:
-    "@swc/core" "^1.3.96"
+    "@swc/core" "^1.3.107"
 
 ansi-styles@^3.2.1:
   version "3.2.1"

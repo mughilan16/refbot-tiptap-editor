@@ -5,6 +5,7 @@ import { BulletList } from "@tiptap/extension-bullet-list";
 import { Code } from "@tiptap/extension-code";
 import { CodeBlock } from "@tiptap/extension-code-block";
 import { Color } from "@tiptap/extension-color";
+import CommentExtension from "@sereneinserenade/tiptap-comment-extension";
 import { Document } from "@tiptap/extension-document";
 import { Dropcursor } from "@tiptap/extension-dropcursor";
 import { FontFamily } from "@tiptap/extension-font-family";
@@ -38,12 +39,14 @@ import {
   ResizableImage,
   TableImproved,
 } from "mui-tiptap";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { CustomParagraph } from "./Extensions/CustomParagraph";
 import { FeedBackCountExtension } from "./Extensions/FeedBackCountExtension";
 import { HoverEventPlugin } from "./Extensions/HoverEventPlugin";
 import { AllRefbotMarks } from "./Extensions/RefbotMark";
 import { mentionSuggestionOptions } from "./mentionSuggestionOptions";
+import { v4 } from "uuid";
+import useCommentStore from "../../hooks/zustand/useCommentStore";
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
@@ -91,6 +94,7 @@ const CustomSuperscript = Superscript.extend({
 export default function useExtensions({
   placeholder,
 }: UseExtensionsOptions = {}): EditorOptions["extensions"] {
+  const { setActiveCommentId } = useCommentStore()
   return useMemo(() => {
     return [
       ...AllRefbotMarks,
@@ -190,6 +194,17 @@ export default function useExtensions({
       // collaborative editing
       History,
       FeedBackCountExtension,
+      CommentExtension.configure({
+        HTMLAttributes: {
+          class: "my-comment",
+        },
+        onCommentActivated: (commentId) => {
+          setActiveCommentId(commentId);
+
+          if (commentId) setTimeout(() => focusCommentWithActiveId(commentId));
+        },
+      }),
+
     ];
   }, [placeholder]);
 }
